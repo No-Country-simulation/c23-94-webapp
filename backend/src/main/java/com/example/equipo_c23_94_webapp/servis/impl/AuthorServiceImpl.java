@@ -7,7 +7,6 @@ import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;
 import com.example.equipo_c23_94_webapp.mapper.AuthorMapper;
 import com.example.equipo_c23_94_webapp.repository.AuthorsRepository;
 import com.example.equipo_c23_94_webapp.servis.AuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
