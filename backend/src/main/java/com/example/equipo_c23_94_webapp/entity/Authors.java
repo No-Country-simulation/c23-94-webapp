@@ -23,6 +23,9 @@ public class Authors {
     private String country;
     private String biography;
 
+    @OneToMany(mappedBy = "author_id", cascade = CascadeType.ALL)
+    private Books_has_Autors books_has_Autors;
+
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Books> books;
 

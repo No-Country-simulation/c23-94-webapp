@@ -30,12 +30,17 @@ public class Books {
     @Column(name = "updated_at")
     private java.time.LocalDateTime updatedAt;
 
-    // // Relación con Publishers (Muchos a Uno)
+    // Relación con Books_has_Autors (Uno a Muchos) tabla PIVOTE
+    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
+    private Books_has_Autors books_has_Autors;
+
+
+    // Relación con Publishers (Muchos a Uno)
      @ManyToOne
      @JoinColumn(name = "publishers_id", nullable = false)
      private Publishers publisher;
 
-    // // Relación con Categories (Muchos a Uno)
+    // Relación con Categories (Muchos a Uno)
      @ManyToOne
      @JoinColumn(name = "categories_id", nullable = false)
      private Categories category;

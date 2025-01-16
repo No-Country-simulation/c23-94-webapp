@@ -28,7 +28,7 @@ public class Users implements UserDetails {
     private String address;
 
     // Relación con Loans (Uno a Muchos)
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userLoans", cascade = CascadeType.ALL)
     private Loans loan;
 
     //@Enumerated(EnumType.STRING)

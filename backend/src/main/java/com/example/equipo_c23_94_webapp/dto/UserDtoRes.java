@@ -2,10 +2,6 @@ package com.example.equipo_c23_94_webapp.dto;
 
 
 
-import jdk.jshell.Snippet;
-import lombok.*;
-
-
 public record UserDtoRes(Long id, String lastName, String username, String email, String phone, String address) {
 
     public static class Builder {

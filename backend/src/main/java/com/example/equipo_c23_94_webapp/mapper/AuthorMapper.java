@@ -2,10 +2,8 @@ package com.example.equipo_c23_94_webapp.mapper;
 
 import com.example.equipo_c23_94_webapp.dto.AuthorDtoReq;
 import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
-import com.example.equipo_c23_94_webapp.dto.BookDto;
 import com.example.equipo_c23_94_webapp.entity.Authors;
 import com.example.equipo_c23_94_webapp.entity.Books;
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +11,8 @@ import java.util.stream.Collectors;
 public class AuthorMapper {
 
     public static AuthorDtoRes toDTO(Authors author) {
-        List<BookDto> bookDtos = author.getBooks().stream()
-                .map(BookMapper::toDTO) // Usamos el método toDTO de BookMapper
+        List<Long> bookIds = author.getBooks().stream()
+                .map(Books::getId) // Convertimos Books a sus IDs
                 .collect(Collectors.toList());
 
         return new AuthorDtoRes(
@@ -23,7 +21,7 @@ public class AuthorMapper {
                 author.getLast_name(),
                 author.getCountry(),
                 author.getBiography(),
-                bookDtos
+                bookIds
         );
     }
 

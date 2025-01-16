@@ -3,7 +3,6 @@ package com.example.equipo_c23_94_webapp.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
