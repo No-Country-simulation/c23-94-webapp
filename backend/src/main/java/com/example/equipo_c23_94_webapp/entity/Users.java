@@ -27,11 +27,15 @@ public class Users implements UserDetails {
     private String phone;
     private String address;
 
+    // Relación con Loans (Uno a Muchos)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Loans loan;
+
     //@Enumerated(EnumType.STRING)
     //private UserEnum userEnum;
 
     // Constructor privado para Builder
-    private Users(Long id, String last_name, String username, String email, String password, String phone, String address) {
+    private Users(Long id, String last_name, String username, String email, String password, String phone, String address, Loans loan) {
         this.id = id;
         this.last_name = last_name;
         this.username = username;
@@ -39,6 +43,7 @@ public class Users implements UserDetails {
         this.password = password;
         this.phone = phone;
         this.address = address;
+        this.loan = loan;
     }
 
     // Método estático builder() para iniciar el Builder
@@ -55,6 +60,7 @@ public class Users implements UserDetails {
         private String password;
         private String phone;
         private String address;
+        private Loans loan;
 
         // Métodos setter para cada atributo
         public Builder id(Long id) {
@@ -92,9 +98,14 @@ public class Users implements UserDetails {
             return this;
         }
 
+        public Builder loan(Loans loan) {
+            this.loan = loan;
+            return this;
+        }
+
         // Método build() que construye la instancia de Users
         public Users build() {
-            return new Users(id, last_name, username, email, password, phone, address);
+            return new Users(id, last_name, username, email, password, phone, address, loan);
         }
     }
 
@@ -152,6 +163,14 @@ public class Users implements UserDetails {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Loans getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loans loan) {
+        this.loan = loan;
     }
 
     // Métodos de UserDetails

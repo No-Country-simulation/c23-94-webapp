@@ -3,6 +3,8 @@ package com.example.equipo_c23_94_webapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 public class Books {
@@ -29,26 +31,31 @@ public class Books {
     private java.time.LocalDateTime updatedAt;
 
     // // Relación con Publishers (Muchos a Uno)
-    // @ManyToOne
-    // @JoinColumn(name = "publishers_id", nullable = false)
-    // private Publishers publishers;
+     @ManyToOne
+     @JoinColumn(name = "publishers_id", nullable = false)
+     private Publishers publisher;
 
     // // Relación con Categories (Muchos a Uno)
-    // @ManyToOne
-    // @JoinColumn(name = "categories_id", nullable = false)
-    // private Categories categories;
+     @ManyToOne
+     @JoinColumn(name = "categories_id", nullable = false)
+     private Categories category;
 
-    // Relación con Authors (Muchos a Muchos)
-    // @ManyToMany
-    // @JoinTable(
-    //     name = "books_has_authors",
-    //     joinColumns = @JoinColumn(name = "books_id"),
-    //     inverseJoinColumns = @JoinColumn(name = "authors_id")
-    // )
-    // private Collection<Authors> authors;
+    // Relación con Authors (Muchos a Uno)
+    @ManyToOne
+    @JoinColumn(name = "autors_id", nullable = false)
+    private Authors author;
+
+    // Relación con Loans (Uno a Muchos)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private Loans loan;
+
+    // Relación con Reviews (Uno a Muchos)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Reviews> reviews;
 
     // Constructor privado para Builder
-    private Books(Long id, String name, String publishedDate, int numberPages, String edition, Long isbn, String coverPhoto, int copies, /*Publishers publishers, Categories categories, Collection<Authors> authors,*/ java.time.LocalDateTime createdAt, java.time.LocalDateTime updatedAt) {
+    private Books(Long id, String name, String publishedDate, int numberPages, String edition, Long isbn, String coverPhoto, int copies, Publishers publisher, Categories category, Authors author,
+                  java.time.LocalDateTime createdAt, java.time.LocalDateTime updatedAt, List<Reviews> reviews) {
         this.id = id;
         this.name = name;
         this.publishedDate = publishedDate;
@@ -57,11 +64,12 @@ public class Books {
         this.isbn = isbn;
         this.coverPhoto = coverPhoto;
         this.copies = copies;
-        // this.publishers = publishers;
-        // this.categories = categories;
-        // this.authors = authors;
+         this.publisher = publisher;
+         this.category = category;
+         this.author = author;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.reviews = reviews;
     }
 
     // Método estático builder() para iniciar el Builder
@@ -79,11 +87,12 @@ public class Books {
         private Long isbn;
         private String coverPhoto;
         private int copies;
-        // private Publishers publishers;
-        // private Categories categories;
-        // private Collection<Authors> authors;
+         private Publishers publisher;
+         private Categories category;
+         private Authors author;
         private java.time.LocalDateTime createdAt;
         private java.time.LocalDateTime updatedAt;
+        private List<Reviews> reviews;
 
         public Builder id(Long id) {
             this.id = id;
@@ -125,20 +134,20 @@ public class Books {
             return this;
         }
 
-        // public Builder publishers(Publishers publishers) {
-        //     this.publishers = publishers;
-        //     return this;
-        // }
+         public Builder publisher(Publishers publisher) {
+             this.publisher = publisher;
+             return this;
+         }
 
-        // public Builder categories(Categories categories) {
-        //     this.categories = categories;
-        //     return this;
-        // }
+         public Builder category(Categories category) {
+             this.category = category;
+             return this;
+         }
 
-        // public Builder authors(Collection<Authors> authors) {
-        //     this.authors = authors;
-        //     return this;
-        // }
+         public Builder author(Authors author) {
+             this.author = author;
+             return this;
+         }
 
         public Builder createdAt(java.time.LocalDateTime createdAt) {
             this.createdAt = createdAt;
@@ -150,9 +159,14 @@ public class Books {
             return this;
         }
 
+        public Builder reviews(List<Reviews> reviews) {
+            this.reviews = reviews;
+            return this;
+        }
+
         // Método build() que construye la instancia de Books
         public Books build() {
-            return new Books(id, name, publishedDate, numberPages, edition, isbn, coverPhoto, copies/* , publishers, categories, authors*/, createdAt, updatedAt);
+            return new Books(id, name, publishedDate, numberPages, edition, isbn, coverPhoto, copies, publisher, category, author, createdAt, updatedAt, reviews);
         }
     }
 
@@ -221,29 +235,29 @@ public class Books {
         this.copies = copies;
     }
 
-    // public Publishers getPublishers() {
-    //     return publishers;
-    // }
+    public Publishers getPublisher() {
+        return publisher;
+    }
 
-    // public void setPublishers(Publishers publishers) {
-    //     this.publishers = publishers;
-    // }
+    public void setPublisher(Publishers publisher) {
+        this.publisher = publisher;
+    }
 
-    // public Categories getCategories() {
-    //     return categories;
-    // }
+    public Categories getCategory() {
+        return category;
+    }
 
-    // public void setCategories(Categories categories) {
-    //     this.categories = categories;
-    // }
+    public void setCategory(Categories category) {
+        this.category = category;
+    }
 
-    // public Collection<Authors> getAuthors() {
-    //     return authors;
-    // }
+    public Authors getAuthor() {
+        return author;
+    }
 
-    // public void setAuthors(Collection<Authors> authors) {
-    //     this.authors = authors;
-    // }
+    public void setAuthor(Authors author) {
+        this.author = author;
+    }
 
     public java.time.LocalDateTime getCreatedAt() {
         return createdAt;
@@ -259,5 +273,21 @@ public class Books {
 
     public void setUpdatedAt(java.time.LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Loans getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loans loan) {
+        this.loan = loan;
+    }
+
+    public List<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Reviews> reviews) {
+        this.reviews = reviews;
     }
 }
