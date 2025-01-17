@@ -18,9 +18,12 @@ public class Loans {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private java.time.LocalDate loan_date;
+    @Column(name = "loan_date")
+    private java.time.LocalDate loanDate;
     private java.time.LocalDate due_date;
-    private java.time.LocalDate return_date;
+
+    @Column(name = "return_date")
+    private java.time.LocalDate returnDate;
     private String status;
 
     @ManyToOne
@@ -31,10 +34,10 @@ public class Loans {
     @JoinColumn(name = "books_id", nullable = false)
     private Books book;
 
-    public Loans(LocalDate loan_date, LocalDate due_date, LocalDate return_date, String status, Users user, Books book) {
-        this.loan_date = loan_date;
+    public Loans(LocalDate loanDate, LocalDate due_date, LocalDate returnDate, String status, Users user, Books book) {
+        this.loanDate = loanDate;
         this.due_date = due_date;
-        this.return_date = return_date;
+        this.returnDate = returnDate;
         this.status = status;
         this.user = user;
         this.book = book;

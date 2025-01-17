@@ -30,11 +30,6 @@ public class Books {
     @Column(name = "updated_at")
     private java.time.LocalDateTime updatedAt;
 
-    // Relación con Books_has_Autors (Uno a Muchos) tabla PIVOTE
-    @OneToMany(mappedBy = "book_id", cascade = CascadeType.ALL)
-    private Books_has_Autors books_has_Autors;
-
-
     // Relación con Publishers (Muchos a Uno)
      @ManyToOne
      @JoinColumn(name = "publishers_id", nullable = false)
@@ -52,7 +47,7 @@ public class Books {
 
     // Relación con Loans (Uno a Muchos)
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private Loans loan;
+    private List<Loans> loans;
 
     // Relación con Reviews (Uno a Muchos)
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
@@ -60,7 +55,7 @@ public class Books {
 
     // Constructor privado para Builder
     private Books(Long id, String name, String publishedDate, int numberPages, String edition, Long isbn, String coverPhoto, int copies, Publishers publisher, Categories category, Authors author,
-                  java.time.LocalDateTime createdAt, java.time.LocalDateTime updatedAt, List<Reviews> reviews) {
+                  java.time.LocalDateTime createdAt, java.time.LocalDateTime updatedAt, List<Reviews> reviews, List<Loans> loans) {
         this.id = id;
         this.name = name;
         this.publishedDate = publishedDate;
@@ -75,6 +70,7 @@ public class Books {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.reviews = reviews;
+        this.loans = loans;
     }
 
     // Método estático builder() para iniciar el Builder
@@ -98,6 +94,7 @@ public class Books {
         private java.time.LocalDateTime createdAt;
         private java.time.LocalDateTime updatedAt;
         private List<Reviews> reviews;
+        private List<Loans> loans;
 
         public Builder id(Long id) {
             this.id = id;
@@ -169,9 +166,14 @@ public class Books {
             return this;
         }
 
+        public Builder loans(List<Loans> loans) {
+            this.loans = loans;
+            return this;
+        }
+
         // Método build() que construye la instancia de Books
         public Books build() {
-            return new Books(id, name, publishedDate, numberPages, edition, isbn, coverPhoto, copies, publisher, category, author, createdAt, updatedAt, reviews);
+            return new Books(id, name, publishedDate, numberPages, edition, isbn, coverPhoto, copies, publisher, category, author, createdAt, updatedAt, reviews, loans);
         }
     }
 
@@ -280,12 +282,12 @@ public class Books {
         this.updatedAt = updatedAt;
     }
 
-    public Loans getLoan() {
-        return loan;
+    public List<Loans> getLoan() {
+        return loans;
     }
 
-    public void setLoan(Loans loan) {
-        this.loan = loan;
+    public void setLoan(List<Loans> loans) {
+        this.loans = loans;
     }
 
     public List<Reviews> getReviews() {

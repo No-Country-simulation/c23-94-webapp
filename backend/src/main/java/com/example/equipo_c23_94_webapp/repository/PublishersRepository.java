@@ -9,6 +9,6 @@ import com.example.equipo_c23_94_webapp.entity.Publishers;
 
 @Repository
 public interface  PublishersRepository extends JpaRepository<Publishers, Long> {
-    List<Publishers> findByPublisherName(String publisherName);
+    List<Publishers> findByName(String name);
     
 }

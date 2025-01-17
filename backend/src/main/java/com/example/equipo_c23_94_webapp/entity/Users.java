@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -28,14 +29,14 @@ public class Users implements UserDetails {
     private String address;
 
     // Relación con Loans (Uno a Muchos)
-    @OneToMany(mappedBy = "userLoans", cascade = CascadeType.ALL)
-    private Loans loan;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Loans> loans;
 
     //@Enumerated(EnumType.STRING)
     //private UserEnum userEnum;
 
     // Constructor privado para Builder
-    private Users(Long id, String last_name, String username, String email, String password, String phone, String address, Loans loan) {
+    private Users(Long id, String last_name, String username, String email, String password, String phone, String address, List<Loans> loans) {
         this.id = id;
         this.last_name = last_name;
         this.username = username;
@@ -43,7 +44,7 @@ public class Users implements UserDetails {
         this.password = password;
         this.phone = phone;
         this.address = address;
-        this.loan = loan;
+        this.loans = loans;
     }
 
     // Método estático builder() para iniciar el Builder
@@ -60,7 +61,7 @@ public class Users implements UserDetails {
         private String password;
         private String phone;
         private String address;
-        private Loans loan;
+        private List<Loans> loans;
 
         // Métodos setter para cada atributo
         public Builder id(Long id) {
@@ -98,14 +99,14 @@ public class Users implements UserDetails {
             return this;
         }
 
-        public Builder loan(Loans loan) {
-            this.loan = loan;
+        public Builder loan(List<Loans> loan) {
+            this.loans = loans;
             return this;
         }
 
         // Método build() que construye la instancia de Users
         public Users build() {
-            return new Users(id, last_name, username, email, password, phone, address, loan);
+            return new Users(id, last_name, username, email, password, phone, address, loans);
         }
     }
 
@@ -165,12 +166,12 @@ public class Users implements UserDetails {
         this.address = address;
     }
 
-    public Loans getLoan() {
-        return loan;
+    public List<Loans> getLoan() {
+        return loans;
     }
 
-    public void setLoan(Loans loan) {
-        this.loan = loan;
+    public void setLoan(List<Loans> loan) {
+        this.loans = loans;
     }
 
     // Métodos de UserDetails

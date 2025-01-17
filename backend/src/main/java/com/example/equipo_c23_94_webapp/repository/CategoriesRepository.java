@@ -9,6 +9,6 @@ import com.example.equipo_c23_94_webapp.entity.Categories;
 
 @Repository
 public interface CategoriesRepository extends JpaRepository<Categories, Long> {
-    List<Categories> findByCategoryName(String categoryName);
+    List<Categories> findByCategory(String category);
     
 }

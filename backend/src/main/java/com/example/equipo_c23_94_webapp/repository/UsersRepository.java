@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface  UsersRepository extends JpaRepository<Users, Long> {
     Optional<Users> findByEmail(String email); // Método para encontrar un usuario por email
-    Optional<Users> findByName(String name);
     List<Users> findByUsername(String username);
 
 
