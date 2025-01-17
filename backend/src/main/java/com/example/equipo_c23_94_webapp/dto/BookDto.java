@@ -1,10 +1,7 @@
 package com.example.equipo_c23_94_webapp.dto;
 
-import com.example.equipo_c23_94_webapp.entity.Loans;
-import com.example.equipo_c23_94_webapp.entity.Reviews;
 
 import java.util.Collection;
-import java.util.List;
 
 public record BookDto(
         Long id,
