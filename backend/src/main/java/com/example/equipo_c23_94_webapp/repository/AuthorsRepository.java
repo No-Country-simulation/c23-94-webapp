@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuthorsRepository extends JpaRepository<Authors, Long> {
-    Optional<Authors> findByName(String name);
-    Optional<Authors> findByCountry(String country);
-    Optional<Authors> findByBiography(String biography);
-}
+    Authors findByName(String name);
+    Authors findByCountry(String country);
+    Authors findByBiography(String biography);
+    }

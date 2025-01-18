@@ -2,8 +2,9 @@ package com.example.equipo_c23_94_webapp.dto;
 
 
 import java.util.Collection;
+import java.util.List;
 
-public record BookDto(
+public record BookDtoRes(
         Long id,
         String name,
         String publishedDate,
@@ -12,11 +13,14 @@ public record BookDto(
         Long isbn,
         String coverPhoto,
         int copies,
-        String publishersName,
-        String categoriesName,
-        Collection<String> authorsNames,
+        Long publisherId,
+        Long categoyId,
+        Long authorId,
         String createdAt,
-        String updatedAt) {
+        String updatedAt,
+        List<Long> loansId,
+        List<Long> reviewsId
+        ) {
 
     public static class Builder {
         private Long id;
@@ -27,9 +31,11 @@ public record BookDto(
         private Long isbn;
         private String coverPhoto;
         private int copies;
-        private String publishersName;
-        private String categoriesName;
-        private Collection<String> authorsNames;
+        private Long publisherId;
+        private Long categoryId;
+        private Long authorId;
+        private List<Long> reviewsId;
+        private List<Long> loansId;
         private String createdAt;
         private String updatedAt;
 
@@ -73,18 +79,26 @@ public record BookDto(
             return this;
         }
 
-        public Builder publishersName(String publishersName) {
-            this.publishersName = publishersName;
+        public Builder publisherId(Long publisherId) {
+            this.publisherId = publisherId;
             return this;
         }
 
-        public Builder categoriesName(String categoriesName) {
-            this.categoriesName = categoriesName;
+        public Builder categoryId(Long categoryId) {
+            this.categoryId = categoryId;
             return this;
         }
 
-        public Builder authorsNames(Collection<String> authorsNames) {
-            this.authorsNames = authorsNames;
+        public Builder authorId(Long authorId) {
+            this.authorId = authorId;
+            return this;
+        }
+        public Builder reviewsId(List<Long> reviewsId) {
+            this.reviewsId = reviewsId;
+            return this;
+        }
+        public Builder loansId(List<Long> loansId) {
+            this.loansId = loansId;
             return this;
         }
 
@@ -98,8 +112,8 @@ public record BookDto(
             return this;
         }
 
-        public BookDto build() {
-            return new BookDto(
+        public BookDtoRes build() {
+            return new BookDtoRes(
                     id,
                     name,
                     publishedDate,
@@ -108,12 +122,14 @@ public record BookDto(
                     isbn,
                     coverPhoto,
                     copies,
-                    publishersName,
-                    categoriesName,
-                    authorsNames,
+                    publisherId,
+                    categoryId,
+                    authorId,
                     createdAt,
-                    updatedAt
-            );
+                    updatedAt,
+                    loansId,
+                    reviewsId
+                    );
         }
     }
 
