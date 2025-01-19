@@ -1,10 +1,9 @@
 package com.example.equipo_c23_94_webapp.mapper;
 
-import com.example.equipo_c23_94_webapp.dto.BookDtoReq;
+import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
 import com.example.equipo_c23_94_webapp.entity.*;
 import com.example.equipo_c23_94_webapp.repository.AuthorsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.stream.Collectors;
 

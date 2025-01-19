@@ -1,9 +1,7 @@
 package com.example.equipo_c23_94_webapp.servis;
 
 
-import com.example.equipo_c23_94_webapp.dto.AuthorDtoReq;
-import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
-import com.example.equipo_c23_94_webapp.dto.BookDtoReq;
+import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
 
 import java.util.List;

@@ -1,10 +1,8 @@
 package com.example.equipo_c23_94_webapp.servis.impl;
 
 
-import com.example.equipo_c23_94_webapp.dto.BookDtoReq;
+import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
-import com.example.equipo_c23_94_webapp.mapper.BookMapper;
-import com.example.equipo_c23_94_webapp.repository.BooksRepository;
 import com.example.equipo_c23_94_webapp.servis.BooksService;
 import org.springframework.stereotype.Service;
 

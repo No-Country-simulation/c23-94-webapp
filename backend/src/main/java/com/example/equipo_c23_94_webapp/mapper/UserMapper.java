@@ -1,9 +1,8 @@
 package com.example.equipo_c23_94_webapp.mapper;
 
 import com.example.equipo_c23_94_webapp.dto.UserDtoRes;
-import com.example.equipo_c23_94_webapp.dto.UserDtoReq;
+import com.example.equipo_c23_94_webapp.dto.req.UserDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Users;
-import lombok.Builder;
 
 public class UserMapper {
 

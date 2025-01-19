@@ -1,13 +1,12 @@
 package com.example.equipo_c23_94_webapp.servis.impl;
 
 import com.example.equipo_c23_94_webapp.dto.UserDtoRes;
-import com.example.equipo_c23_94_webapp.dto.UserDtoReq;
+import com.example.equipo_c23_94_webapp.dto.req.UserDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Users;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;
 import com.example.equipo_c23_94_webapp.mapper.UserMapper;
 import com.example.equipo_c23_94_webapp.repository.UsersRepository;
 import com.example.equipo_c23_94_webapp.servis.UserServis;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 
 import org.springframework.security.crypto.password.PasswordEncoder;

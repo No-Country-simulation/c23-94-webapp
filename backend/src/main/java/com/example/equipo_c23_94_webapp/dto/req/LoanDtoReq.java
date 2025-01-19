@@ -1,4 +1,4 @@
-package com.example.equipo_c23_94_webapp.dto;
+package com.example.equipo_c23_94_webapp.dto.req;
 
 import java.time.LocalDate;
 
