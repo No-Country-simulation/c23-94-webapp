@@ -57,4 +57,8 @@ public class AuthorServiceImpl implements AuthorService {
         List<Authors> authors = repository.findAll();
         return authors.stream().map(AuthorMapper::toDTO).collect(Collectors.toList());
     }
+
+    public Authors findById(Long id) {
+        return repository.findById(id).orElseThrow(null);
+    }
 }

@@ -5,6 +5,7 @@ import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
 import com.example.equipo_c23_94_webapp.entity.Authors;
 import com.example.equipo_c23_94_webapp.entity.Books;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,7 @@ public class AuthorMapper {
                 authorDtoReq.last_name(),
                 authorDtoReq.country(),
                 authorDtoReq.biography(),
-                authorDtoReq.books()// Utiliza la lista directamente
+                new ArrayList<>()// Lista vacia que se ira llenando a medida que le asociemos books
 
                // books
         );

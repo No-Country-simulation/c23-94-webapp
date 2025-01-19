@@ -40,7 +40,7 @@ public class BookMapper {
     }
 
     // Convertir un BookDto a Books
-    public static Books toBook(BookDtoReq book) {
+    public static Books toBook(BookDtoReq book, Authors author) {
         return Books.builder()
                 .name(book.name())
                 .publishedDate(book.publishedDate())
@@ -51,6 +51,7 @@ public class BookMapper {
                 .copies(book.copies())
                 .createdAt(book.createdAt())
                 .updatedAt(book.updatedAt())
+                .author(author)
                 .build();
     }
 }
