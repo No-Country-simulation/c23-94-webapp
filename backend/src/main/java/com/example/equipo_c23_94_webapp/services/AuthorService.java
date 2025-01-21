@@ -14,4 +14,5 @@ public interface AuthorService {
     void deleteAuthor(Long id);
     List<AuthorDtoRes> findAll();
     Authors findById(Long id);
+    void updateAuthorBDA(Authors author);
 }

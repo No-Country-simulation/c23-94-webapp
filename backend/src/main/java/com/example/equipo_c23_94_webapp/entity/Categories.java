@@ -35,6 +35,11 @@ public class Categories {
         this.books = books;
     }
 
+    public void addBook(Books book) {
+        this.books.add(book);
+        book.setCategory(this);
+    }
+
     public Long getId() {
         return id;
     }

@@ -62,4 +62,8 @@ public class AuthorServiceImpl implements AuthorService {
     public Authors findById(Long id) {
         return repository.findById(id).orElseThrow(null);
     }
+
+    public void updateAuthorBDA(Authors authors){
+        this.repository.save(authors);
+    }
 }

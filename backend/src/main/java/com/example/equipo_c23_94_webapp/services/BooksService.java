@@ -13,6 +13,6 @@ public interface BooksService {
     BookDtoRes getBook(Long id);
     BookDtoRes createBook(Books book);
     BookDtoRes updateBook(Long id, BookDtoReq bookDtoReq);
-    void deleteAuthor(Long id);
+    void deleteBook(Long id);
     List<BookDtoRes> findAll();
 }
