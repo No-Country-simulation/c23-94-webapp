@@ -1,4 +1,4 @@
-package com.example.equipo_c23_94_webapp.servis;
+package com.example.equipo_c23_94_webapp.services;
 
 
 import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;

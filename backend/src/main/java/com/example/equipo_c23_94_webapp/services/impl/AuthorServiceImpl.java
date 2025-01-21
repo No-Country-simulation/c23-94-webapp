@@ -1,4 +1,4 @@
-package com.example.equipo_c23_94_webapp.servis.impl;
+package com.example.equipo_c23_94_webapp.services.impl;
 
 import com.example.equipo_c23_94_webapp.dto.req.AuthorDtoReq;
 import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
@@ -6,7 +6,8 @@ import com.example.equipo_c23_94_webapp.entity.Authors;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;
 import com.example.equipo_c23_94_webapp.mapper.AuthorMapper;
 import com.example.equipo_c23_94_webapp.repository.AuthorsRepository;
-import com.example.equipo_c23_94_webapp.servis.AuthorService;
+import com.example.equipo_c23_94_webapp.services.AuthorService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

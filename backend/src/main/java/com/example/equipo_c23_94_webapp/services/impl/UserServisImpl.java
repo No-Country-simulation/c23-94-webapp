@@ -1,4 +1,4 @@
-package com.example.equipo_c23_94_webapp.servis.impl;
+package com.example.equipo_c23_94_webapp.services.impl;
 
 import com.example.equipo_c23_94_webapp.dto.UserDtoRes;
 import com.example.equipo_c23_94_webapp.dto.req.UserDtoReq;
@@ -6,7 +6,8 @@ import com.example.equipo_c23_94_webapp.entity.Users;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;
 import com.example.equipo_c23_94_webapp.mapper.UserMapper;
 import com.example.equipo_c23_94_webapp.repository.UsersRepository;
-import com.example.equipo_c23_94_webapp.servis.UserServis;
+import com.example.equipo_c23_94_webapp.services.UserServis;
+
 import org.modelmapper.ModelMapper;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,6 +35,20 @@ public class UserServisImpl implements UserServis {
     @Override
     public UserDtoRes getUser(Long id) {
         Users user = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Usuario no encontrado"));
+        return UserMapper.toDTO(user);
+    }
+
+    @Override
+    public UserDtoRes getUserbyEmail(String email) {
+        Users user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Usuario no encontrado"));
+        return UserMapper.toDTO(user);
+    }
+
+    @Override
+    public UserDtoRes getUserbyUsername(String username) {
+        Users user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new NotFoundException("Usuario no encontrado"));
         return UserMapper.toDTO(user);
     }

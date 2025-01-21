@@ -2,9 +2,9 @@ package com.example.equipo_c23_94_webapp.controller;
 
 import com.example.equipo_c23_94_webapp.dto.UserDtoRes;
 import com.example.equipo_c23_94_webapp.dto.req.UserDtoReq;
-import com.example.equipo_c23_94_webapp.servis.UserServis;
+import com.example.equipo_c23_94_webapp.services.UserServis;
+
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +20,6 @@ public class UsersController {
 
     private final UserServis userServis;
 
-    @Autowired
     public UsersController(UserServis userServis) {
         this.userServis = userServis;
     }
