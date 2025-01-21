@@ -54,6 +54,9 @@ public class Users implements UserDetails {
         this.loans = loans;
     }
 
+    public Users() {
+    }
+
     // Método estático builder() para iniciar el Builder
     public static Builder builder() {
         return new Builder();
