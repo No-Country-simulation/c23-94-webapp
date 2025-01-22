@@ -7,15 +7,16 @@ import com.example.equipo_c23_94_webapp.entity.Loans;
 import com.example.equipo_c23_94_webapp.entity.Users;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;
 import com.example.equipo_c23_94_webapp.mapper.LoanMapper;
-import com.example.equipo_c23_94_webapp.repository.AuthorsRepository;
 import com.example.equipo_c23_94_webapp.repository.BooksRepository;
 import com.example.equipo_c23_94_webapp.repository.LoansRepository;
 import com.example.equipo_c23_94_webapp.repository.UsersRepository;
 import com.example.equipo_c23_94_webapp.services.LoanService;
+import org.springframework.stereotype.Service;
 
 import java.awt.print.Book;
 import java.util.List;
 
+@Service
 public class LoanServiceImpl implements LoanService {
 
     private final LoansRepository loansRepository;

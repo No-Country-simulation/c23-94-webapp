@@ -1,22 +1,21 @@
 package com.example.equipo_c23_94_webapp.services.impl;
 
-import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
 import com.example.equipo_c23_94_webapp.dto.PublisherDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.AuthorDtoReq;
 import com.example.equipo_c23_94_webapp.dto.req.PublisherDtoReq;
-import com.example.equipo_c23_94_webapp.entity.Authors;
 import com.example.equipo_c23_94_webapp.entity.Books;
 import com.example.equipo_c23_94_webapp.entity.Publishers;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;
-import com.example.equipo_c23_94_webapp.mapper.AuthorMapper;
 import com.example.equipo_c23_94_webapp.mapper.PublisherMapper;
 import com.example.equipo_c23_94_webapp.repository.BooksRepository;
 import com.example.equipo_c23_94_webapp.repository.PublishersRepository;
 import com.example.equipo_c23_94_webapp.services.PublisherService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Service
 public class PublisherServiceImpl implements PublisherService {
 
     private final PublishersRepository publishersRepository;

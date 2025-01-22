@@ -9,11 +9,12 @@ import com.example.equipo_c23_94_webapp.mapper.CategoryMapper;
 import com.example.equipo_c23_94_webapp.repository.BooksRepository;
 import com.example.equipo_c23_94_webapp.repository.CategoriesRepository;
 import com.example.equipo_c23_94_webapp.services.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoriesRepository categoriesRepository;
@@ -28,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDtoRes getCategory(Long id) {
         Categories category = categoriesRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("Category no encontrada"));
-        return null;
+        return CategoryMapper.toDTO(category);
     }
 
     @Override
@@ -40,10 +41,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDtoRes updateCategory(Long id, CategoryDtoReq categoryDtoReq) {
-        List<Books> books = categoryDtoReq.bookIds().stream().map(l ->{
-            return booksRepository.findById(l).orElseThrow(
-                    () -> new NotFoundException("No se encontró el  libro"));
-        }).toList();
+        List<Books> books = categoryDtoReq.bookIds().stream().map(l -> booksRepository.findById(l).orElseThrow(
+                () -> new NotFoundException("No se encontró el  libro"))).toList();
         Categories category = categoriesRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("No se encontró la categoria")
         );

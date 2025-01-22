@@ -1,16 +1,12 @@
 package com.example.equipo_c23_94_webapp.controller;
 
 
-import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
 import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.AuthorDtoReq;
 import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.entity.*;
-import com.example.equipo_c23_94_webapp.mapper.AuthorMapper;
 import com.example.equipo_c23_94_webapp.mapper.BookMapper;
 import com.example.equipo_c23_94_webapp.services.AuthorService;
 import com.example.equipo_c23_94_webapp.services.BooksService;
-
 import com.example.equipo_c23_94_webapp.services.CategoryService;
 import com.example.equipo_c23_94_webapp.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;

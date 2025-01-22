@@ -1,12 +1,9 @@
 package com.example.equipo_c23_94_webapp.controller;
 
 
-import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
 import com.example.equipo_c23_94_webapp.dto.LoanDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.dto.req.LoanDtoReq;
 import com.example.equipo_c23_94_webapp.entity.*;
-import com.example.equipo_c23_94_webapp.mapper.BookMapper;
 import com.example.equipo_c23_94_webapp.mapper.LoanMapper;
 import com.example.equipo_c23_94_webapp.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
