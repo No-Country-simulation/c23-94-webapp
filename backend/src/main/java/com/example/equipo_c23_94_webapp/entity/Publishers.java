@@ -30,6 +30,10 @@ public class Publishers {
         this.books = books;
     }
 
+    public void addBook(Books book) {
+        this.books.add(book);
+    }
+
     public Long getId() {
         return id;
     }

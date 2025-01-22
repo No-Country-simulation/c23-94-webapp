@@ -2,6 +2,7 @@ package com.example.equipo_c23_94_webapp.services;
 
 import com.example.equipo_c23_94_webapp.dto.UserDtoRes;
 import com.example.equipo_c23_94_webapp.dto.req.UserDtoReq;
+import com.example.equipo_c23_94_webapp.entity.Users;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface UserServis {
     List<UserDtoRes> getAllUsers();
 
     UserDtoRes updateProfileImage(Long id, String imageUrl);
+
+    Users findById(Long id);
+
+    void updateUserBDA(Users user);
 }

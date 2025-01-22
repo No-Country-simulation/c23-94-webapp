@@ -73,6 +73,13 @@ public class Books {
         this.loans = loans;
     }
 
+    public void addReview(Reviews review) {
+        this.reviews.add(review);
+    }
+
+    public void addLoan(Loans loan) {
+        this.loans.add(loan);
+    }
     // Método estático builder() para iniciar el Builder
     public static Builder builder() {
         return new Builder();

@@ -96,4 +96,14 @@ public class UserServisImpl implements UserServis {
         user = userRepository.save(user);
         return UserMapper.toDTO(user);
     }
+
+    @Override
+    public Users findById(Long id) {
+         return userRepository.findById(id).orElseThrow(null);
+    }
+
+    @Override
+    public void updateUserBDA(Users user) {
+        userRepository.save(user);
+    }
 }

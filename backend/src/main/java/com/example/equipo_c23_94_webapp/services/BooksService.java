@@ -15,4 +15,6 @@ public interface BooksService {
     BookDtoRes updateBook(Long id, BookDtoReq bookDtoReq);
     void deleteBook(Long id);
     List<BookDtoRes> findAll();
+    Books findById(Long id);
+    void updateBookBDA(Books book);
 }

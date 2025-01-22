@@ -5,16 +5,14 @@ import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
 import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
 import com.example.equipo_c23_94_webapp.dto.req.AuthorDtoReq;
 import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
-import com.example.equipo_c23_94_webapp.entity.Authors;
-import com.example.equipo_c23_94_webapp.entity.Books;
-import com.example.equipo_c23_94_webapp.entity.Categories;
-import com.example.equipo_c23_94_webapp.entity.Reviews;
+import com.example.equipo_c23_94_webapp.entity.*;
 import com.example.equipo_c23_94_webapp.mapper.AuthorMapper;
 import com.example.equipo_c23_94_webapp.mapper.BookMapper;
 import com.example.equipo_c23_94_webapp.services.AuthorService;
 import com.example.equipo_c23_94_webapp.services.BooksService;
 
 import com.example.equipo_c23_94_webapp.services.CategoryService;
+import com.example.equipo_c23_94_webapp.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,12 +28,14 @@ public class BooksController {
     private final BooksService booksService;
     private final AuthorService authorService;
     private final CategoryService categoryService;
+    private final PublisherService publisherService;
 
 
-    public BooksController(BooksService booksService, AuthorService authorService, CategoryService categoryService) {
+    public BooksController(BooksService booksService, AuthorService authorService, CategoryService categoryService, PublisherService publisherService) {
         this.booksService = booksService;
         this.authorService = authorService;
         this.categoryService = categoryService;
+        this.publisherService = publisherService;
     }
 
     @GetMapping("/{id}")
@@ -56,11 +56,14 @@ public class BooksController {
 
         Authors author = authorService.findById(bookDtoReq.authorId());
         Categories category = categoryService.findById(bookDtoReq.categoryId());
-        Books book = BookMapper.toBook(bookDtoReq, author);
+        Publishers publisher = publisherService.findById(bookDtoReq.publisherId());
+        Books book = BookMapper.toBook(bookDtoReq, author, publisher, category);
         author.addBook(book);
         category.addBook(book);
+        publisher.addBook(book);
         authorService.updateAuthorBDA(author);
         categoryService.updateCategoryBDA(category);
+        publisherService.updatePublisherBDA(publisher);
         BookDtoRes bookDtoRes = booksService.createBook(book);
         return ResponseEntity.ok(bookDtoRes);
     }

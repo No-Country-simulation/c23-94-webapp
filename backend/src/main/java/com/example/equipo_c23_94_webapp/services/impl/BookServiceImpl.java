@@ -18,7 +18,6 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BooksService {
 
-    @Autowired
     private final BooksRepository booksRepository;
     private final PublishersRepository publisherRepo;
     private final CategoriesRepository categoriesRepository;
@@ -36,8 +35,13 @@ public class BookServiceImpl implements BooksService {
     }
 
     @Override
+    public Books findById(Long id) {
+        return booksRepository.findById(id).orElseThrow(null);
+    }
+
+    @Override
     public BookDtoRes getBook(Long id) {
-        return null;
+        return BookMapper.toDTO(booksRepository.findById(id).orElseThrow(null));
     }
 
     @Override
@@ -96,5 +100,10 @@ public class BookServiceImpl implements BooksService {
     @Override
     public List<BookDtoRes> findAll() {
         return booksRepository.findAll().stream().map(BookMapper::toDTO).toList();
+    }
+
+    @Override
+    public void updateBookBDA(Books book) {
+        booksRepository.save(book);
     }
 }

@@ -5,6 +5,8 @@ import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
 import com.example.equipo_c23_94_webapp.entity.*;
 import com.example.equipo_c23_94_webapp.repository.AuthorsRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -40,7 +42,9 @@ public class BookMapper {
     }
 
     // Convertir un BookDto a Books
-    public static Books toBook(BookDtoReq book, Authors author) {
+    public static Books toBook(BookDtoReq book, Authors author, Publishers publisher, Categories category) {
+        List<Reviews> reviews = new ArrayList<>();
+        List<Loans> loans = new ArrayList<>();
         return Books.builder()
                 .name(book.name())
                 .publishedDate(book.publishedDate())
@@ -52,6 +56,10 @@ public class BookMapper {
                 .createdAt(book.createdAt())
                 .updatedAt(book.updatedAt())
                 .author(author)
+                .publisher(publisher)
+                .category(category)
+                .reviews(reviews)
+                .loans(loans)
                 .build();
     }
 }
