@@ -36,19 +36,15 @@ const Navbar = ({ openModal, openLoginModal }) => {
                     </div>
                 </div>
 
-                {/* Contenedor de los botones y logo */}
                 <div className="d-flex align-items-center justify-content-between w-100">
-                    {/* Botón hamburguesa para abrir la sidebar */}
                     <button className="navbar-toggler text" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    {/* Logo */}
                     <NavLink className="navbar-brand ms-3" to="/homepage">
                         <img src={logotxtwhite} alt="Inspire Library Logo" style={{ width: '150px', height: 'auto' }} />
                     </NavLink>
 
-                    {/* Contenedor de los botones de Registrarse e Iniciar sesión */}
                     <div className="d-flex ms-auto">
                         <button className="btn btn-primary ms-3" onClick={openModal}>Registrarse</button>
                         <button className="btn btn-outline-light ms-3" onClick={openLoginModal}>Iniciar sesión</button>

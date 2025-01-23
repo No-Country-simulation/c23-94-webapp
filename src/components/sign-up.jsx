@@ -83,8 +83,8 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
               <span>¿Ya tienes cuenta? </span>
               <button
                 onClick={() => {
-                  onClose(); // Cierra el modal de registro
-                  openLoginModal(); // Abre el modal de inicio de sesión
+                  onClose(); 
+                  openLoginModal(); 
                 }}
                 style={{
                   background: 'none',

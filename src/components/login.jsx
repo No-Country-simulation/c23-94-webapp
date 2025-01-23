@@ -15,7 +15,7 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
       return;
     }
     console.log('Usuario autenticado:', { email, password });
-    onClose(); // Cierra el modal después de iniciar sesión
+    onClose(); 
   };
 
   return (
@@ -64,8 +64,8 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
               <span>¿No tienes cuenta? </span>
               <button
                 onClick={() => {
-                  onClose(); // Cierra el modal de inicio de sesión
-                  openModal(); // Abre el modal de registro
+                  onClose(); 
+                  openModal(); 
                 }}
                 style={{
                   background: 'none',
