@@ -11,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityFilter {
@@ -25,6 +27,7 @@ public class SecurityFilter {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
                 http
+                                .cors(withDefaults())
                                 .csrf(csrfConfig -> csrfConfig.disable())
                                 .sessionManagement(
                                                 sessionMangConfig -> sessionMangConfig
@@ -34,7 +37,6 @@ public class SecurityFilter {
                                 .authorizeHttpRequests(authConfig -> {
                                         authConfig.requestMatchers(HttpMethod.POST, "/api/v1/login").permitAll();
                                         authConfig.requestMatchers(HttpMethod.POST, "/api/v1/register").permitAll();
-                                      
                                         authConfig.anyRequest().denyAll();
 
                                 });

@@ -17,7 +17,7 @@ import com.example.equipo_c23_94_webapp.repository.UsersRepository;
 import com.example.equipo_c23_94_webapp.services.auth.AuthenticationService;
 
 @RestController
-@CrossOrigin(origins = { "*", "https://localhost/", "http://localhost:8100",
+@CrossOrigin(origins = { "*", "https://localhost/","http://localhost:3000", "http://localhost:8100",
         "https://jmghcf68-8100.use2.devtunnels.ms/" }, methods = { RequestMethod.POST,
                 RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
 @RequestMapping("/api/v1")
