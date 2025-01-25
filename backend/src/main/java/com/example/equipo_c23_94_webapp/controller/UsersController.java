@@ -30,6 +30,8 @@ public class UsersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<UserDtoRes> getUserById(@PathVariable Long id) {
         UserDtoRes user = userServis.getUser(id);
@@ -42,14 +44,14 @@ public class UsersController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userServis.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<List<UserDtoRes>> getAllUsers() {
         List<UserDtoRes> users = userServis.getAllUsers();
