@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/reviews")
+@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+    RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
+@RequestMapping("/api/v1")
 public class ReviewController {
 
     @Autowired
@@ -28,20 +30,20 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/reviews/{id}")
     public ResponseEntity<ReviewsDtoRes> getReviewById(@PathVariable Long id) {
         ReviewsDtoRes reviewsDtoRes = reviewService.getReview(id);
         return ResponseEntity.ok(reviewsDtoRes);
     }
 
-    @GetMapping()
+    @GetMapping("/reviews")
     public ResponseEntity<List<ReviewsDtoRes>> findAll() {
         List<ReviewsDtoRes> reviewsDtoRes = reviewService.findAll();
         return ResponseEntity.ok(reviewsDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
+    @PostMapping("/reviews")
     public ResponseEntity<ReviewsDtoRes> createReview(@RequestBody ReviewDtoReq reviewDtoReq) {
 
         Books book = booksService.findById(reviewDtoReq.bookId());
@@ -53,7 +55,7 @@ public class ReviewController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/reviews/{id}")
     public ResponseEntity<ReviewsDtoRes> updateReview(@PathVariable Long id,
                                                  @RequestBody ReviewDtoReq reviewDtoReq) {
         ReviewsDtoRes reviewsDtoRes = reviewService.updateReview(id, reviewDtoReq);
@@ -61,7 +63,7 @@ public class ReviewController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/reviews/{id}")
     public ResponseEntity<String> deleteReview(@PathVariable Long id) {
         reviewService.deleteReview(id);
         return ResponseEntity.ok("La review con el id " + id + "fue eliminado correctamente");

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/publishers")
+@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+    RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
+@RequestMapping("/api/v1")
 public class PublishersController {
 
     @Autowired
@@ -22,27 +24,27 @@ public class PublishersController {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/publishers/{id}")
     public ResponseEntity<PublisherDtoRes> getPublisherById(@PathVariable Long id) {
         PublisherDtoRes publisher = service.getPublisher(id);
         return ResponseEntity.ok(publisher);
     }
 
-    @GetMapping()
+    @GetMapping("/publishers")
     public ResponseEntity<List<PublisherDtoRes>> findAll() {
         List<PublisherDtoRes> publisherDtoRes = service.findAll();
         return ResponseEntity.ok(publisherDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping()
+    @PostMapping("/publishers")
     public ResponseEntity<PublisherDtoRes> createPublisher(@RequestBody PublisherDtoReq publisherDtoReq) {
         PublisherDtoRes publisherDtoRes = service.createPublisher(publisherDtoReq);
         return ResponseEntity.ok(publisherDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/publishers/{id}")
     public ResponseEntity<PublisherDtoRes> updatePublisher(@PathVariable Long id,
                                                          @RequestBody PublisherDtoReq publisherDtoReq) {
         PublisherDtoRes publisherDtoRes = service.updatePublisher(id, publisherDtoReq);
@@ -50,7 +52,7 @@ public class PublishersController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/publishers/{id}")
     public ResponseEntity<String> deletePublisher(@PathVariable Long id) {
         service.deletePublisher(id);
         return ResponseEntity.ok("La editora con el id " + id + "fue eliminado correctamente");

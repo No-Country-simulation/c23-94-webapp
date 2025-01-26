@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/loans")
+@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+    RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
+@RequestMapping("/api/v1")
 public class LoansController {
 
     @Autowired
@@ -29,20 +31,20 @@ public class LoansController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/loans/{id}")
     public ResponseEntity<LoanDtoRes> getLoanById(@PathVariable Long id) {
         LoanDtoRes loanDtoRes = loanService.getLoan(id);
         return ResponseEntity.ok(loanDtoRes);
     }
 
-    @GetMapping()
+    @GetMapping("/loans")
     public ResponseEntity<List<LoanDtoRes>> findAll() {
         List<LoanDtoRes> loanDtoRes = loanService.findAll();
         return ResponseEntity.ok(loanDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
+    @PostMapping("/loans")
     public ResponseEntity<LoanDtoRes> createLoan(@RequestBody LoanDtoReq loanDtoReq) {
 
         Users user = userServis.findById(loanDtoReq.userId());
@@ -57,7 +59,7 @@ public class LoansController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/loans/{id}")
     public ResponseEntity<LoanDtoRes> updateLoan(@PathVariable Long id,
                                                  @RequestBody LoanDtoReq loanDtoReq) {
         LoanDtoRes loanDtoRes = loanService.updateLoan(id, loanDtoReq);
@@ -65,7 +67,7 @@ public class LoansController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/loans/{id}")
     public ResponseEntity<String> deleteLoan(@PathVariable Long id) {
         loanService.deleteLoan(id);
         return ResponseEntity.ok("El loan con el id " + id + "fue eliminado correctamente");

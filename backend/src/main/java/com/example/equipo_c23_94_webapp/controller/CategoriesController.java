@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/categories")
+@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+    RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
+@RequestMapping("/api/v1")
 public class CategoriesController {
 
 
@@ -23,27 +25,27 @@ public class CategoriesController {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/categories/{id}")
     public ResponseEntity<CategoryDtoRes> getCategoryById(@PathVariable Long id) {
         CategoryDtoRes category = service.getCategory(id);
         return ResponseEntity.ok(category);
     }
 
-    @GetMapping()
+    @GetMapping("/categories")
     public ResponseEntity<List<CategoryDtoRes>> findAll() {
         List<CategoryDtoRes> categoryDtoRes = service.findAll();
         return ResponseEntity.ok(categoryDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping()
+    @PostMapping("/categories")
     public ResponseEntity<CategoryDtoRes> createCategory(@RequestBody CategoryDtoReq categoryDtoReq) {
         CategoryDtoRes categoryDtoRes = service.createCategory(categoryDtoReq);
         return ResponseEntity.ok(categoryDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/categories/{id}")
     public ResponseEntity<CategoryDtoRes> updateCategory(@PathVariable Long id,
                                                      @RequestBody CategoryDtoReq categoryDtoReq) {
         CategoryDtoRes categoryDtoRes = service.updateCategory(id, categoryDtoReq);
@@ -51,7 +53,7 @@ public class CategoriesController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/categories/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
         service.deleteCategory(id);
         return ResponseEntity.ok("La categoría con el id " + id + "fue eliminado correctamente");

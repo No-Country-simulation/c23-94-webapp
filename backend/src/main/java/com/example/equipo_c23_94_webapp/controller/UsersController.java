@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/api/users")
+@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+    RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
+@RequestMapping("/api/v1")
 public class UsersController {
 
     private final UserServis userServis;
@@ -24,7 +25,7 @@ public class UsersController {
         this.userServis = userServis;
     }
 
-    @PostMapping
+    @PostMapping("/users")
     public ResponseEntity<UserDtoRes> createUser(@Valid @RequestBody UserDtoReq userDto) {
         UserDtoRes createdUser = userServis.createUser(userDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
@@ -32,27 +33,27 @@ public class UsersController {
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<UserDtoRes> getUserById(@PathVariable Long id) {
         UserDtoRes user = userServis.getUser(id);
         return ResponseEntity.ok(user);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<UserDtoRes> updateUser(@PathVariable Long id, @Valid @RequestBody UserDtoReq userDTOReq) {
         UserDtoRes updatedUser = userServis.updateUser(id, userDTOReq);
         return ResponseEntity.ok(updatedUser);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userServis.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping
+    @GetMapping("/users")
     public ResponseEntity<List<UserDtoRes>> getAllUsers() {
         List<UserDtoRes> users = userServis.getAllUsers();
         return ResponseEntity.ok(users);

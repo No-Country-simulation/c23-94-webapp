@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 
 @Entity
-@NoArgsConstructor
 public class Users implements UserDetails {
 
     @Id

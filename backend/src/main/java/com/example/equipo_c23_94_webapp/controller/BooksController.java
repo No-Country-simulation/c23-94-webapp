@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/books")
+@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+                RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
+@RequestMapping("/api/v1")
 public class BooksController {
 
     @Autowired
@@ -34,20 +36,20 @@ public class BooksController {
         this.publisherService = publisherService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/books/{id}")
     public ResponseEntity<BookDtoRes> getBookById(@PathVariable Long id) {
         BookDtoRes bookDtoRes = booksService.getBook(id);
         return ResponseEntity.ok(bookDtoRes);
     }
 
-    @GetMapping()
+    @GetMapping("/books")
     public ResponseEntity<List<BookDtoRes>> findAll() {
         List<BookDtoRes> bookDtoRes = booksService.findAll();
         return ResponseEntity.ok(bookDtoRes);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping
+    @PostMapping("/books")
     public ResponseEntity<BookDtoRes> createBook(@RequestBody BookDtoReq bookDtoReq) {
 
         Authors author = authorService.findById(bookDtoReq.authorId());
@@ -65,7 +67,7 @@ public class BooksController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/books/{id}")
     public ResponseEntity<BookDtoRes> updateBook(@PathVariable Long id,
                                                      @RequestBody BookDtoReq bookDtoReq) {
         BookDtoRes bookDtoRes = booksService.updateBook(id, bookDtoReq);
@@ -73,7 +75,7 @@ public class BooksController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/books/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Long id) {
         booksService.deleteBook(id);
         return ResponseEntity.ok("El book con el id " + id + "fue eliminado correctamente");
