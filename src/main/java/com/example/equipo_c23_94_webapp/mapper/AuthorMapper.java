@@ -1,7 +1,7 @@
 package com.example.equipo_c23_94_webapp.mapper;
 
-import com.example.equipo_c23_94_webapp.dto.req.AuthorDtoReq;
-import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.AuthorDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.AuthorDtoRes;
 import com.example.equipo_c23_94_webapp.entity.Authors;
 import com.example.equipo_c23_94_webapp.entity.Books;
 

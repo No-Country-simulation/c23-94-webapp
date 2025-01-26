@@ -1,8 +1,8 @@
 package com.example.equipo_c23_94_webapp.controller;
 
 
-import com.example.equipo_c23_94_webapp.dto.CategoryDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.CategoryDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.CategoryDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.CategoryDtoReq;
 import com.example.equipo_c23_94_webapp.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

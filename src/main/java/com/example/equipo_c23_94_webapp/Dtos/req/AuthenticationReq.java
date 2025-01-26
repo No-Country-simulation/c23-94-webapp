@@ -1,4 +1,5 @@
-package com.example.equipo_c23_94_webapp.dto.req;
+package com.example.equipo_c23_94_webapp.Dtos.req;
+
 
 public class AuthenticationReq {
     private String username;

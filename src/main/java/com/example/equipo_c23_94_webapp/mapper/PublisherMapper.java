@@ -1,11 +1,7 @@
 package com.example.equipo_c23_94_webapp.mapper;
 
-import com.example.equipo_c23_94_webapp.dto.LoanDtoRes;
-import com.example.equipo_c23_94_webapp.dto.PublisherDtoRes;
-import com.example.equipo_c23_94_webapp.dto.ReviewsDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.LoanDtoReq;
-import com.example.equipo_c23_94_webapp.dto.req.PublisherDtoReq;
-import com.example.equipo_c23_94_webapp.dto.req.ReviewDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.PublisherDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.PublisherDtoReq;
 import com.example.equipo_c23_94_webapp.entity.*;
 
 import java.util.ArrayList;

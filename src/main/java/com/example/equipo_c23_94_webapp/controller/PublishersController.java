@@ -1,8 +1,8 @@
 package com.example.equipo_c23_94_webapp.controller;
 
 
-import com.example.equipo_c23_94_webapp.dto.PublisherDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.PublisherDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.PublisherDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.PublisherDtoReq;
 import com.example.equipo_c23_94_webapp.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

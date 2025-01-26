@@ -1,7 +1,7 @@
 package com.example.equipo_c23_94_webapp.services.impl;
 
-import com.example.equipo_c23_94_webapp.dto.CategoryDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.CategoryDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.CategoryDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.CategoryDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Books;
 import com.example.equipo_c23_94_webapp.entity.Categories;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;

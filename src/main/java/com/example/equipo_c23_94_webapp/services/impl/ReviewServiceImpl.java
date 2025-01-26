@@ -1,7 +1,7 @@
 package com.example.equipo_c23_94_webapp.services.impl;
 
-import com.example.equipo_c23_94_webapp.dto.ReviewsDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.ReviewDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.ReviewsDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.ReviewDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Books;
 import com.example.equipo_c23_94_webapp.entity.Reviews;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;

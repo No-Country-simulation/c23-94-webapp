@@ -1,5 +1,4 @@
-package com.example.equipo_c23_94_webapp.dto;
-
+package com.example.equipo_c23_94_webapp.Dtos;
 
 import java.util.Collection;
 import java.util.List;

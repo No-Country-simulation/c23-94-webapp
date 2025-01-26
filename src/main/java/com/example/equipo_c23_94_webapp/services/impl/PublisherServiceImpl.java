@@ -1,7 +1,7 @@
 package com.example.equipo_c23_94_webapp.services.impl;
 
-import com.example.equipo_c23_94_webapp.dto.PublisherDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.PublisherDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.PublisherDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.PublisherDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Books;
 import com.example.equipo_c23_94_webapp.entity.Publishers;
 import com.example.equipo_c23_94_webapp.exceptions.NotFoundException;

@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.equipo_c23_94_webapp.dto.req.AuthenticationReq;
+import com.example.equipo_c23_94_webapp.Dtos.req.AuthenticationReq;
 import com.example.equipo_c23_94_webapp.entity.Users;
 import com.example.equipo_c23_94_webapp.exceptions.ResponseHelper;
 import com.example.equipo_c23_94_webapp.repository.UsersRepository;

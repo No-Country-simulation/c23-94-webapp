@@ -1,7 +1,7 @@
 package com.example.equipo_c23_94_webapp.services.impl;
 
-import com.example.equipo_c23_94_webapp.dto.LoanDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.LoanDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.LoanDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.LoanDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Books;
 import com.example.equipo_c23_94_webapp.entity.Loans;
 import com.example.equipo_c23_94_webapp.entity.Users;

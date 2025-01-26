@@ -1,11 +1,8 @@
 package com.example.equipo_c23_94_webapp.services;
 
 
-import com.example.equipo_c23_94_webapp.dto.AuthorDtoRes;
-import com.example.equipo_c23_94_webapp.dto.CategoryDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.AuthorDtoReq;
-import com.example.equipo_c23_94_webapp.dto.req.CategoryDtoReq;
-import com.example.equipo_c23_94_webapp.entity.Authors;
+import com.example.equipo_c23_94_webapp.Dtos.CategoryDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.CategoryDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Categories;
 
 import java.util.List;

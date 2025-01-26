@@ -10,8 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.equipo_c23_94_webapp.dto.AuthenticationRes;
-import com.example.equipo_c23_94_webapp.dto.req.AuthenticationReq;
+import com.example.equipo_c23_94_webapp.Dtos.AuthenticationRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.AuthenticationReq;
 import com.example.equipo_c23_94_webapp.entity.Users;
 import com.example.equipo_c23_94_webapp.repository.UsersRepository;
 

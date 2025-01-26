@@ -1,8 +1,8 @@
 package com.example.equipo_c23_94_webapp.controller;
 
 
-import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.BookDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.entity.*;
 import com.example.equipo_c23_94_webapp.mapper.BookMapper;
 import com.example.equipo_c23_94_webapp.services.AuthorService;

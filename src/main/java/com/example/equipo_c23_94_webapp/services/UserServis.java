@@ -1,7 +1,7 @@
 package com.example.equipo_c23_94_webapp.services;
 
-import com.example.equipo_c23_94_webapp.dto.UserDtoRes;
-import com.example.equipo_c23_94_webapp.dto.req.UserDtoReq;
+import com.example.equipo_c23_94_webapp.Dtos.UserDtoRes;
+import com.example.equipo_c23_94_webapp.Dtos.req.UserDtoReq;
 import com.example.equipo_c23_94_webapp.entity.Users;
 
 import java.util.List;
