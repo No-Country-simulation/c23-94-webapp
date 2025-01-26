@@ -50,7 +50,7 @@ public class SecurityFilter {
                                         .hasAuthority(Permission.UPDATE_ONE_AUTHOR.name());
                                         authConfig.requestMatchers(HttpMethod.DELETE, "/api/v1/authors/{id}")
                                         .hasAuthority(Permission.DELETE_ONE_AUTHOR.name());
-                                      
+                                       
                                         authConfig.requestMatchers(HttpMethod.GET, "/api/v1/books")
                                         .hasAuthority(Permission.READ_ALL_BOOKS.name());
                                         authConfig.requestMatchers(HttpMethod.GET, "/api/v1/books/{id}")
