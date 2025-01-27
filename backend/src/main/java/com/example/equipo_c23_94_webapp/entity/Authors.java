@@ -26,6 +26,9 @@ public class Authors {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Books> books;
 
+    public Authors() {
+    }
+
     public Authors(String name, String last_name, String country, String biography, List<Books> books) {
         this.name = name;
         this.last_name = last_name;

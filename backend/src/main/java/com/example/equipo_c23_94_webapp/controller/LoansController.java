@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
+@CrossOrigin(origins = { "*", "https://localhost/", "http://localhost:3000"}, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
     RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
 @RequestMapping("/api/v1")
 public class LoansController {

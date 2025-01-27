@@ -17,7 +17,7 @@ import com.example.equipo_c23_94_webapp.repository.UsersRepository;
 import com.example.equipo_c23_94_webapp.services.auth.AuthenticationService;
 
 @RestController
-@CrossOrigin(origins = { "*", "https://localhost/" }, methods = { RequestMethod.POST,
+@CrossOrigin(origins = { "*", "https://localhost/", "http://localhost:3000" }, methods = { RequestMethod.POST,
                 RequestMethod.PUT }, allowedHeaders = { "Authorization", "Content-Type" })
 @RequestMapping("/api/v1")
 public class AuthController {
