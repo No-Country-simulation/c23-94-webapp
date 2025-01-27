@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Toast, ToastContainer } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
+import { jwtDecode } from "jwt-decode";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginModal = ({ isOpen, onClose, openModal }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [showToast, setShowToast] = useState(false); // Para manejar el Toast
-  const [toastMessage, setToastMessage] = useState(''); // Mensaje dinámico para el Toast
-  const [toastBg, setToastBg] = useState('success'); // Fondo del Toast dinámico (éxito/error)
 
   if (!isOpen) return null;
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Mostrar el Toast al presionar el botón del formulario
-    setShowToast(true);
-
     if (!username || !password) {
-      setToastMessage('Por favor, complete todos los campos.');
-      setToastBg('danger');
+      // Si los campos están vacíos, mostrar un toast de error
+      toast.error('Por favor, complete todos los campos.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
 
@@ -34,42 +40,49 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.jwt); // Guarda el token en localStorage
-        setToastMessage('Inicio de sesión exitoso.'); // Mensaje de éxito
-        setToastBg('success'); // Fondo verde para éxito
-        setUsername(''); // Limpia usuario
-        setPassword(''); // Limpia contraseña
-        setErrorMessage(''); // Limpia errores previos
-        onClose(); // Cierra el modal
+        localStorage.setItem('token', data.data.jwt);
+        localStorage.setItem('username', username);
+        const decodedToken = jwtDecode(data.data.jwt);
+        const role = decodedToken.role;
+        localStorage.setItem('role', role);
+
+        
+        setUsername('');
+        setPassword('');
+        setErrorMessage('');
+        onClose();
+        window.location.reload();
       } else {
         const errorData = await response.json();
-        setToastMessage(errorData.message || 'Error al iniciar sesión.');
-        setToastBg('danger'); // Fondo rojo para error
+        toast.error(errorData.message || 'Error al iniciar sesión.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
-      setToastMessage('Hubo un problema al conectar con el servidor.');
-      setToastBg('danger');
+      toast.error('Hubo un problema al conectar con el servidor.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
   return (
     <>
-      {/* ToastContainer para manejar la notificación */}
-      <ToastContainer position="top-end" className="p-3">
-        <Toast
-          onClose={() => setShowToast(false)}
-          show={showToast}
-          delay={3000}
-          autohide
-          bg={toastBg} // Color dinámico
-        >
-          <Toast.Header>
-            <strong className="me-auto">{toastBg === 'success' ? 'Éxito' : 'Error'}</strong>
-          </Toast.Header>
-          <Toast.Body>{toastMessage}</Toast.Body>
-        </Toast>
-      </ToastContainer>
+      <ToastContainer />
 
       <Modal show={isOpen} onHide={onClose} centered size="lg">
         <Modal.Header closeButton>
@@ -111,7 +124,6 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
                 </div>
               </Form>
 
-              {/* Texto con enlace */}
               <div className="text-center mt-3">
                 <span>¿No tienes cuenta? </span>
                 <button

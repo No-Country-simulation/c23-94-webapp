@@ -7,6 +7,8 @@ import { Comienzo } from './components/comienzo';
 import { Navbar } from './components/navbar';
 import SignUpModal from './components/sign-up'; 
 import LoginModal from './components/login';
+import Library from './components/library';
+import Author from './components/authors';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function AppContent() {
         <Routes>
           <Route path="/homepage" element={<HomePage openModal={openModal} />} />
           <Route path="/comienzo" element={<Comienzo />} />
+          <Route path="/library" element={<Library />}/>
+          <Route path="/authors" element={<Author />}/>
           <Route path="*" element={<Navigate to="/homepage" />} />
         </Routes>
       </div>

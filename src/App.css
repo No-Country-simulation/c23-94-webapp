@@ -129,3 +129,29 @@
   border-color: #007bff;
   box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
 }
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #0004fd;
+  color: white; 
+}
+.btn-outline-light:hover {
+  background-color: #0004fd; 
+  color: white; 
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #007bff; 
+  color: white; 
+}
+
+
+.dropdown-menu .dropdown-item.active {
+  background-color: #007bff; 
+  color: white; 
+}
+
+
+.btn-outline-light:focus, .btn-outline-light:hover {
+  background-color: #007bff; 
+  color: white; 
+}
