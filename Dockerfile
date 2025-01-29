@@ -27,7 +27,7 @@ WORKDIR /app
 RUN echo "Contenido del directorio de trabajo antes de copiar el archivo JAR:" && ls -l /app
 
 # Copiar el archivo JAR generado desde la etapa de compilación
-COPY --from=build /app/target/c23-94-webapp-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 # Mostrar el contenido del directorio de trabajo después de copiar el archivo JAR
 RUN echo "Contenido del directorio de trabajo después de copiar el archivo JAR:" && ls -l /app
