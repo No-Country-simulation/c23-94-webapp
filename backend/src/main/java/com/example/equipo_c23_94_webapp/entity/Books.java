@@ -21,10 +21,11 @@ public class Books {
     @Column(unique = true)
     private Long isbn;
 
+    @Column(length = 1024)
     private String coverPhoto;
     private int copies;
 
-    @Column(name = "created_at", updatable = false, nullable = false)
+    @Column(name = "created_at")
     private java.time.LocalDateTime createdAt;
 
     @Column(name = "updated_at")

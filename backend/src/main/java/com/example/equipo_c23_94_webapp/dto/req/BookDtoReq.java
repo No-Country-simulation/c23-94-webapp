@@ -20,6 +20,6 @@ public record BookDtoReq(
         Long categoryId,
         Long authorId,
         List<Long> loansId,
-        List<Reviews> reviewsId
+        List<Long> reviewsId
         )
 {}

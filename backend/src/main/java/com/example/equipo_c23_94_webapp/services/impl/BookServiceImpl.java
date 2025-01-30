@@ -61,16 +61,24 @@ public class BookServiceImpl implements BooksService {
         Authors author = authorsRepository.findById(bookDtoReq.authorId()).orElseThrow(
                 () -> new NotFoundException("Author no encontrado"));
         List<Loans> loans = new ArrayList<>();
-        List<Reviews> reviews = new ArrayList<>();
+        if (bookDtoReq.loansId() != null) {  // Evita el error de null
+            bookDtoReq.loansId().forEach(l -> {
+                Loans loan = loansRepository.findById(l).orElseThrow(
+                        () -> new NotFoundException("Loan no encontrado")
+                );
+                loans.add(loan);
+            });
+        }
 
-        bookDtoReq.loansId().forEach(l -> {
-            Loans loan = loansRepository.findById(l).orElseThrow(null);
-            loans.add(loan);
-        });
-        bookDtoReq.loansId().forEach(l -> {
-            Reviews review = reviewsRepository.findById(l).orElseThrow(null);
-            reviews.add(review);
-        });
+        List<Reviews> reviews = new ArrayList<>();
+        if (bookDtoReq.reviewsId() != null) {  // Evita el error de null
+            bookDtoReq.reviewsId().forEach(r -> {
+                Reviews review = reviewsRepository.findById(r).orElseThrow(
+                        () -> new NotFoundException("Review no encontrado")
+                );
+                reviews.add(review);
+            });
+        }
 
         book.setName(bookDtoReq.name());
         book.setPublishedDate(bookDtoReq.publishedDate());
@@ -79,14 +87,13 @@ public class BookServiceImpl implements BooksService {
         book.setIsbn(bookDtoReq.isbn());
         book.setCoverPhoto(bookDtoReq.coverPhoto());
         book.setCopies(bookDtoReq.copies());
-        book.setCreatedAt(bookDtoReq.createdAt());
-        book.setUpdatedAt(bookDtoReq.updatedAt());
         book.setPublisher(publisher);
         book.setCategory(category);
         book.setAuthor(author);
         book.setLoan(loans);
         book.setReviews(reviews);
 
+        booksRepository.save(book);
         return BookMapper.toDTO(book);
     }
 
