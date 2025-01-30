@@ -52,22 +52,26 @@ public class BooksController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/books")
     public ResponseEntity<BookDtoRes> createBook(@RequestBody BookDtoReq bookDtoReq) {
-
         Authors author = authorService.findById(bookDtoReq.authorId());
         Categories category = categoryService.findById(bookDtoReq.categoryId());
         Publishers publisher = publisherService.findById(bookDtoReq.publisherId());
         Books book = BookMapper.toBook(bookDtoReq, author, publisher, category);
         book.setCreatedAt(LocalDateTime.now());
         book.setUpdatedAt(LocalDateTime.now());
+
+        BookDtoRes bookDtoRes = booksService.createBook(book);
+
         author.addBook(book);
         category.addBook(book);
         publisher.addBook(book);
+
         authorService.updateAuthorBDA(author);
         categoryService.updateCategoryBDA(category);
         publisherService.updatePublisherBDA(publisher);
-        BookDtoRes bookDtoRes = booksService.createBook(book);
+
         return ResponseEntity.ok(bookDtoRes);
     }
+
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/books/{id}")
