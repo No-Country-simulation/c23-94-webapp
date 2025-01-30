@@ -1,0 +1,120 @@
+.library-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.create-library-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 15px;
+  z-index: 10;
+}
+
+.create-library-btn {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.create-library-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Estilos mejorados para las tarjetas */
+.book-card {
+  width: 270px;
+  min-height: 320px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  background-color: white !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.book-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.book-card .author-info {
+  margin-top: auto;
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+}
+
+/* Botón de más info */
+.more-info-btn {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.more-info-btn button {
+  padding: 10px 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.more-info-btn button:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de eliminar */
+.delete-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #b02a37;
+}

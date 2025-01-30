@@ -7,8 +7,8 @@ import { Comienzo } from './components/comienzo';
 import { Navbar } from './components/navbar';
 import SignUpModal from './components/sign-up'; 
 import LoginModal from './components/login';
-import Library from './components/library';
-import Author from './components/authors';
+import Library from './components/libraryComponents/library';
+import Author from './components/authorsComponents/authors';
 
 function App() {
   return (
