@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
+
 public class Books {
 
     @Id
@@ -52,6 +52,9 @@ public class Books {
     // Relación con Reviews (Uno a Muchos)
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Reviews> reviews;
+
+    public Books() {
+    }
 
     // Constructor privado para Builder
     private Books(Long id, String name, String publishedDate, int numberPages, String edition, Long isbn, String coverPhoto, int copies, Publishers publisher, Categories category, Authors author,

@@ -21,13 +21,16 @@ public class Publishers {
     private String name;
     private String country;
 
-    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.REMOVE, orphanRemoval = false)
     private List<Books> books;
 
     public Publishers(String name, String country, List<Books> books) {
         this.name = name;
         this.country = country;
         this.books = books;
+    }
+
+    public Publishers() {
     }
 
     public void addBook(Books book) {

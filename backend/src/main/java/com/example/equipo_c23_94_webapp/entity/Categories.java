@@ -29,6 +29,9 @@ public class Categories {
         this.description = description;
     }
 
+    public Categories() {
+    }
+
     public Categories(String category, String description, List<Books> books) {
         this.category = category;
         this.description = description;

@@ -1,6 +1,7 @@
 package com.example.equipo_c23_94_webapp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,6 @@ import lombok.ToString;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class Authors {
@@ -19,7 +19,10 @@ public class Authors {
     private Long id;
 
     private String name;
-    private String last_name;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     private String country;
     private String biography;
 
@@ -29,9 +32,9 @@ public class Authors {
     public Authors() {
     }
 
-    public Authors(String name, String last_name, String country, String biography, List<Books> books) {
+    public Authors(String name, String lastName, String country, String biography, List<Books> books) {
         this.name = name;
-        this.last_name = last_name;
+        this.lastName = lastName;
         this.country = country;
         this.biography = biography;
         this.books = books;
@@ -60,12 +63,12 @@ public class Authors {
         this.name = name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getCountry() {

@@ -39,7 +39,7 @@ public class AuthorServiceImpl implements AuthorService {
         Authors author = repository.findById(id).orElseThrow(
                 () -> new NotFoundException("Autor no encontrado"));
         author.setName(authorDtoReq.name());
-        author.setLast_name(authorDtoReq.last_name());
+        author.setLastName(authorDtoReq.lastName());
         author.setCountry(authorDtoReq.country());
         author.setBiography(authorDtoReq.biography());
         repository.save(author);

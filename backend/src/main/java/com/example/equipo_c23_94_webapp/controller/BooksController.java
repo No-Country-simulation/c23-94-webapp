@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -56,6 +57,8 @@ public class BooksController {
         Categories category = categoryService.findById(bookDtoReq.categoryId());
         Publishers publisher = publisherService.findById(bookDtoReq.publisherId());
         Books book = BookMapper.toBook(bookDtoReq, author, publisher, category);
+        book.setCreatedAt(LocalDateTime.now());
+        book.setUpdatedAt(LocalDateTime.now());
         author.addBook(book);
         category.addBook(book);
         publisher.addBook(book);

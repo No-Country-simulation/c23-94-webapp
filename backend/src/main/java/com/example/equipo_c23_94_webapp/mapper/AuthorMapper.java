@@ -21,7 +21,7 @@ public class AuthorMapper {
         return new AuthorDtoRes(
                 author.getId(),
                 author.getName(),
-                author.getLast_name(),
+                author.getLastName(),
                 author.getCountry(),
                 author.getBiography(),
                 bookIds
@@ -34,7 +34,7 @@ public class AuthorMapper {
             //    .collect(Collectors.toList());
         return new Authors(
                 authorDtoReq.name(),
-                authorDtoReq.last_name(),
+                authorDtoReq.lastName(),
                 authorDtoReq.country(),
                 authorDtoReq.biography(),
                 new ArrayList<>()// Lista vacia que se ira llenando a medida que le asociemos books
