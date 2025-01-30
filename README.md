@@ -20,7 +20,7 @@
 - JSX  
 
 **Back-end:**  
-- Java  
+- Java
 - Spring Framework  
 
 **Base de datos:**  

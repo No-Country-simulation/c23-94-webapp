@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, BrowserRouter, Navigate, useLocation } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import HomePage from './components/homepage';
 import { Comienzo } from './components/comienzo';
@@ -10,9 +12,11 @@ import LoginModal from './components/login';
 import Library from './components/libraryComponents/library';
 import Author from './components/authorsComponents/authors';
 
+
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <AppContent />
     </BrowserRouter>
   );

@@ -4,14 +4,14 @@ import "../../styles/author.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function Registro({ onSubmit, item, onVolver, authors, publishers, categories, isSubmitting}) {
+export default function Registro({ onSubmit, item, onVolver, authors, publishers, categories, isSubmitting }) {
 
-    const {register, handleSubmit, formState:{errors}} = useForm({values:item})
+    const { register, handleSubmit, formState: { errors } } = useForm({ values: item })
     const onClickVolver = (e) => {
-        e.preventDefault();  // Prevenir la acción por defecto del botón "Volver" (que podría ser recargar la página)
+        e.preventDefault();
         onVolver();
     };
-
+    console.log(item)
     return (
         <>
             <div className="container_app">
@@ -20,7 +20,7 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                     <div className="card-body">
                         <form className="form" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
-                                <label htmlFor="name">Name:</label>
+                                <label htmlFor="name">Título:</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -40,9 +40,9 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                                 {errors.publishedDate && <span className="error">{errors.publishedDate.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="numberPages">numberPages:</label>
+                                <label htmlFor="numberPages">Cantidad de páginas:</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     id="numberPages"
                                     className="form-control"
                                     {...register("numberPages", { required: "Campo obligatorio" })}
@@ -50,7 +50,7 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                                 {errors.numberPages && <span className="error">{errors.numberPages.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="edition">edition:</label>
+                                <label htmlFor="edition">Edición:</label>
                                 <input
                                     type="number"
                                     id="edition"
@@ -70,17 +70,24 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                                 {errors.isbn && <span className="error">{errors.isbn.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="coverPhoto">coverPhoto:</label>
+                                <label htmlFor="coverPhoto">Link de portada:</label>
                                 <input
                                     type="text"
                                     id="coverPhoto"
                                     className="form-control"
-                                    {...register("coverPhoto", { required: "Campo obligatorio" })}
+                                    {...register("coverPhoto", {
+                                        required: "Campo obligatorio",
+                                        pattern: {
+                                            value: /^(https?:\/\/)?([\w\d-]+\.)+[\w\d]{2,}(\/.*)?$/,
+                                            message: "Ingrese un enlace válido"
+                                        }
+                                    })}
                                 />
+
                                 {errors.coverPhoto && <span className="error">{errors.coverPhoto.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="copies">copies:</label>
+                                <label htmlFor="copies">Cantidad de copias:</label>
                                 <input
                                     type="number"
                                     id="copies"
@@ -91,7 +98,7 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                             </div>
                             <div className="form-group">
                                 <label htmlFor="authorId">Autor:</label>
-                                <select className="form-control" id="authorId" {...register("authorId", {required:"Campo obligatorio"})}>
+                                <select className="form-control" id="authorId" {...register("authorId", { required: "Campo obligatorio" })}>
                                     {authors.map((a) => {
                                         return (
                                             <option value={a.id} key={a.id}>{a.name} {a.lastName}</option>
@@ -102,7 +109,7 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                             </div>
                             <div className="form-group">
                                 <label htmlFor="publisherId">Editorial:</label>
-                                <select className="form-control" id="publisherId" {...register("publisherId", {required:"Campo obligatorio"})}>
+                                <select className="form-control" id="publisherId" {...register("publisherId", { required: "Campo obligatorio" })}>
                                     {publishers.map((p) => {
                                         return (
                                             <option value={p.id} key={p.id}>{p.name}</option>
@@ -112,8 +119,8 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                                 {errors.publisherId && <span className="error">{errors.publisherId.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="categoryId">Categorías:</label>
-                                <select className="form-control" id="categoryId" {...register("categoryId", {required:"Campo obligatorio"})}>
+                                <label htmlFor="categoryId">Categoría:</label>
+                                <select className="form-control" id="categoryId" {...register("categoryId", { required: "Campo obligatorio" })}>
                                     {categories.map((c) => {
                                         return (
                                             <option value={c.id} key={c.id}>{c.name}</option>
@@ -130,7 +137,7 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
                         </form>
                     </div>
                 </div>
-                <ToastContainer /> 
+                <ToastContainer />
             </div>
         </>
     );

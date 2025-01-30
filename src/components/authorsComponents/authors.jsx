@@ -70,11 +70,8 @@ export default function Author() {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
-        });
-
-        // Si la respuesta tiene la estructura { data: [...] }, mantén el acceso con res.data
-        // Si la respuesta no tiene la propiedad 'data', accede a res directamente
-        setAuthors(res);  // Esto previene problemas si la respuesta no tiene 'data'
+        });     
+        setAuthors(res);
         setIsLoading(false);
 
         const role = localStorage.getItem('role');
@@ -109,9 +106,9 @@ const onRegistro = () => {
 
 const onEliminar = async (id) => {
   try {
-      await servicesAuthors.remove(id);  // Elimina el autor
+      await servicesAuthors.remove(id);
       toast.success('Autor eliminado con éxito'); 
-      loadData();  // Recarga los datos después de la eliminación
+      loadData();
   } catch (error) {
       toast.error('Error al eliminar el autor'); 
       console.error("Error al eliminar el autor:", error);
@@ -161,22 +158,18 @@ const onFiltrar = async(filter) => {
             {isLoading ? (
               <div className="loading-message">Cargando autores...</div>
             ) : (
-              authors.map((author) => (
-                <div className="author-card" key={author.id}>
-                  <div className="author-info">
-                    <h3>{author.name} {author.lastName}</h3>
-                    <p>{author.country}</p>
-                    <p>{author.biography}</p>
-                  </div>
-  
+              authors.map((author) => (<div className="author-card" key={author.id} style={{ backgroundColor: '#f0f8ff' }}>
+                <div className="author-info">
+                  <h3>{author.name} {author.lastName}</h3>
+                  <p>{author.country}</p>
+                  <p className="bio">{author.biography}</p>
+                </div>          
                   {isAdmin && (
                     <>
-                    <div className="author-actions">
+                    <div className="view-more">
                       <button onClick={() => onEliminar(author.id)} className="btn btn-danger">
                         Eliminar
                       </button>
-                    </div>
-                    <div>
                     <button
                       type="button"
                       className="btn btn-primary create-author-btn"

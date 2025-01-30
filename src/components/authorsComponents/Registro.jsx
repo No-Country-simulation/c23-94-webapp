@@ -8,7 +8,7 @@ export default function Registro({ onSubmit, item, onVolver}) {
 
     const {register, handleSubmit, formState:{errors}} = useForm({values:item})
     const onClickVolver = (e) => {
-        e.preventDefault();  // Prevenir la acción por defecto del botón "Volver" (que podría ser recargar la página)
+        e.preventDefault();
         onVolver();
     };
 
