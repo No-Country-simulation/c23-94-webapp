@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import '../../styles/library.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import servicesBooks from "../../services/serviceLibrary"
-import Registro from "./Registro"
-import serviceLibrary from "../../services/serviceLibrary";
+import servicesBooks from "../../services/serviceLibrary";
+import Registro from "./Registro";
+import Consulta from "./Consulta";
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -12,17 +12,18 @@ const Library = () => {
   const [error, setError] = useState(null);
   const [isSessionExpired, setIsSessionExpired] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [item, setItem] = useState({})
-  const [action, setAction] = useState("T")
-  const [authors, setAuthors] = useState([])
-  const [publishers, setPublishers] = useState([])
-  const [categories, setCategories] = useState([])
+  const [item, setItem] = useState({});
+  const [action, setAction] = useState("T");
+  const [authors, setAuthors] = useState([]);
+  const [publishers, setPublishers] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [bookQuery, setBookQuery] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [deletingBookId, setDeletingBookId] = useState(null);
 
-    const onCategories = async () => {
-      const eq = await servicesBooks.getNombresCategories();
-      setCategories(eq);
+  const onCategories = async () => {
+    const eq = await servicesBooks.getNombresCategories();
+    setCategories(eq);
   };
 
   const onAuthors = async () => {
@@ -105,8 +106,8 @@ const Library = () => {
     }
   };
   const onSubmit = async (data) => {
-    if (isSubmitting) return; 
-    setIsSubmitting(true);     
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     try {
       await servicesBooks.save(data);
       if (data.id != null) {
@@ -170,6 +171,15 @@ const Library = () => {
     await loadData(filter)
   }
 
+  const onConsultarBook = async (id) => {
+    const book = await servicesBooks.getOneBook(id)
+    setBookQuery(book);
+    onAuthors();
+    onCategories();
+    onPublishers();
+    setAction("C");
+  }
+
   if (isSessionExpired) {
     return (
       <div className="session-expired">
@@ -205,12 +215,12 @@ const Library = () => {
                       </div>
                       <div className="card-content">
                         <h3 className="card-title">{book.name}</h3>
-                        <p className="card-description"> {categories.length > 0 
-                                    ? categories.find(cat => cat.id === book.categoryId)?.name 
-                                    : "Cargando..."}</p>
-                        <p className="card-info">{publishers.length > 0 
-                                    ? publishers.find(pub => pub.id === book.publisherId)?.name 
-                                    : "Cargando..."}</p>
+                        <p className="card-description">Categoría: {categories.length > 0
+                          ? categories.find(cat => cat.id === book.categoryId)?.name
+                          : "Cargando..."}</p>
+                        <p className="card-info">Editorial: {publishers.length > 0
+                          ? publishers.find(pub => pub.id === book.publisherId)?.name
+                          : "Cargando..."}</p>
                       </div>
                       {isAdmin && (
                         <div className="card-actions">
@@ -229,6 +239,14 @@ const Library = () => {
                           >
                             Actualizar
                           </button>
+                        </div>
+                      )}
+                      {!isAdmin && (
+                        <div className="card-actions" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                          <button
+                            onClick={() => onConsultarBook(book.id)}
+                            className="btn btn-primary"
+                          >Consultar</button>
                         </div>
                       )}
                     </div>
@@ -251,8 +269,13 @@ const Library = () => {
             </>
           )}
           {
-            action !== "T" && (
+            action === "R" && (
               <Registro onVolver={onVolver} onSubmit={onSubmit} item={item} authors={authors} publishers={publishers} categories={categories} isSubmitting={isSubmitting}></Registro>
+            )
+          }
+          {
+            action === "C" && (
+              <Consulta onVolver={onVolver} bookQuery={bookQuery} authors={authors} publishers={publishers} categories={categories} isSubmitting={isSubmitting}></Consulta>
             )
           }
         </>

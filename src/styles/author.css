@@ -4,9 +4,28 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  align-items: flex-start; /* Asegura que las tarjetas comiencen desde arriba */
   padding: 20px;
-  margin-top: 60px; 
+  margin-top: 60px;
 }
+
+.author-card {
+  width: 120px;
+  height: 150px; /* Disminuir la altura */
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 15px; /* Reducir el padding */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Cambiar de 'row' a 'column' para mejor disposición */
+  justify-content: flex-start; /* Asegurar que el contenido se acomode arriba */
+}
+
+
 
 .create-author-button-container {
   width: 100%; 
@@ -32,16 +51,6 @@
   background-color: #0056b3;
 }
 
-.author-card {
-  width: 250px;
-  height: 300px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 40px 50py;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  transition: all 0.3s ease;
-}
   
   .loading-message {
     color: white;
@@ -57,23 +66,9 @@
     border-radius: 5px;
     z-index: 1000; 
   }
-  .author-card {
-    width: 250px;
-    height: 300px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    transition: all 0.3s ease;
-    flex-direction: row;
-  }
   
   .author-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
   .author-card .author-info {
@@ -85,12 +80,10 @@
     font-size: 20px;
     margin: 0;
     font-weight: 600;
-    color: #333;
   }
   
   .author-card p {
-    font-size: 14px;
-    color: #666;
+    font-size: 14px; 
     text-align: justify;
   }
   
@@ -116,6 +109,13 @@
     font-size: 14px;
     transition: background-color 0.3s;
   }
+  
+  .card-actions {
+    padding: 12px;
+    justify-content: space-between; 
+    background-color: #ffffff;
+  }
+
   
   .more-info-btn button:hover {
     background-color: #0056b3;
@@ -165,24 +165,16 @@
   }
   
   .author-card {
-    background-image: url(); /* Cambia la ruta a tu fondo */
-    background-size: cover;
-    background-position: center;
     border-radius: 15px;
-    padding: 20px;
-    color: white;
+    color: rgb(0, 0, 0);
     width: 350px;
     height: 450px;
-    display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(199, 50, 50, 0.3);
   }
   
   .author-card .author-info {
-    background: rgba(0, 0, 0, 0.6);
     padding: 15px;
-    border-radius: 10px;
     text-align: center;
   }
   
@@ -196,19 +188,5 @@
     margin: 10px 0;
   }
   
-  .author-card .view-more {
-    text-align: center;
-    background-color: #e50914;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    margin-top: 15px;
-  }
-  
-  .author-card .view-more:hover {
-    background-color: #b4060b;
-  }
-  
+
   

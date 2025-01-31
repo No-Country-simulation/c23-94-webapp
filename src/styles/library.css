@@ -14,7 +14,7 @@
   margin-bottom: 20px;
   position: sticky;
   top: 15px;
-  z-index: 10;
+  z-index: 1;
 }
 
 .create-library-btn {
@@ -177,7 +177,7 @@
 .card-actions {
   padding: 15px;
   display: flex;
-  justify-content: space-between;  /* Espacia los botones de forma equitativa */
+  justify-content: space-between; 
   background-color: #e5e5e5;
 }
 
@@ -187,23 +187,23 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 48%;  /* Asegura que los botones estén uno al lado del otro sin ocupar toda la línea */
+  width: 48%;  
 }
 
 .card-actions .btn-delete {
-  background-color: #dc3545; /* Rojo */
+  background-color: #dc3545; 
   color: white;
 }
 
 .card-actions .btn-delete:hover {
-  background-color: #c82333; /* Rojo más oscuro */
+  background-color: #c82333; 
 }
 
 .card-actions .btn-update {
-  background-color: #28a745; /* Verde */
+  background-color: #28a745;
   color: white;
 }
 
 .card-actions .btn-update:hover {
-  background-color: #218838; /* Verde más oscuro */
+  background-color: #218838;
 }
