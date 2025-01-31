@@ -27,7 +27,7 @@ const Navbar = ({ openModal, openLoginModal }) => {
     return (
         <nav className="navbar navbar-translucent fixed-top" style={{ backgroundColor: 'rgba(139, 83, 55, 0.7)' }}>
             <div className="container-fluid">
-                <div className="offcanvas offcanvas-start" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div className="offcanvas offcanvas-start" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div className="offcanvas-header center-img">
                         <NavLink to= "/comienzo" onClick={closeOffcanvas}>
                         <img src={logo2} alt="Inspire Library Logo" style={{ width: '200px', height: 'auto', marginRight: '10px' }} />

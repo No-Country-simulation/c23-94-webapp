@@ -20,7 +20,7 @@ const getAll = async () => {
         return data;
     } catch (error) {
         console.error("Error al obtener los libros:", error.message);
-        throw error;  // Re-lanzamos el error para manejarlo más arriba
+        throw error; 
     }
 };
 
@@ -111,8 +111,35 @@ const getNombresCategories = async () => {
     }
 };
 
+const getCategoryById = async (categoryId) => {
+    const url = `http://localhost:8080/api/v1/categories/${categoryId}`;
 
-// Función para guardar un autor (crear o actualizar)
+    try {
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Token incluido
+            },
+        });
+
+        if (!res.ok) {
+            const errorMessage = await res.text();
+            throw new Error(`Error en la petición: ${res.status} - ${errorMessage}`);
+        }
+
+        const data = await res.json();
+        return {
+            name: data.category,
+            id: data.id,
+        };
+
+    } catch (error) {
+        console.error("Error obteniendo la categoría:", error);
+        return null; 
+    }
+};
+
 const save = async (data) => {
     try {
         const token = localStorage.getItem('token');
@@ -173,4 +200,4 @@ const remove = async (id) => {
 
 
 
-export default { remove, getAll, save, getNombresAuthors, getNombresCategories, getNombresPublishers};
+export default { remove, getAll, save, getNombresAuthors, getNombresCategories, getNombresPublishers, getCategoryById};

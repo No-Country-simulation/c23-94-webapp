@@ -93,22 +93,18 @@ const Library = () => {
   const onAuthors = async () => {
     const eq = await servicesBooks.getNombresAuthors()
     setAuthors(eq)
-
   }
   const onPublishers = async () => {
     const eq = await servicesBooks.getNombresPublishers()
     setPublishers(eq)
-
   }
   const onCategories = async () => {
     const eq = await servicesBooks.getNombresCategories()
     setCategories(eq)
-
   }
   const onSubmit = async (data) => {
-    if (isSubmitting) return;  // Evitar que se envíe si ya se está enviando
-    setIsSubmitting(true);     // Marcar como enviando
-
+    if (isSubmitting) return; 
+    setIsSubmitting(true);     
     try {
       await servicesBooks.save(data);
       if (data.id != null) {
@@ -155,13 +151,6 @@ const Library = () => {
     }
   };
 
-
-
-
-
-
-
-
   const onActualizar = async (item) => {
     setItem(item)
     onAuthors();
@@ -201,64 +190,60 @@ const Library = () => {
 
       {!isSessionExpired && !error && (
         <>
-          {
-            action === "T" && (
-              <>
-                {isLoading ? (
-                  <div className="loading-message">Cargando libros...</div>
-                ) : (
-                  books.map((book) => (
-                    <div>                      
-                      <div key={book.id} className="custom-card">
-                        <div className="image-container">
-                          <img src={book.coverPhoto} alt={book.name} className="card-image" />
-                        </div>
-                        <div className="card-content">
-                          <h3 className="card-title">{book.name}</h3>
-                          <p className="card-description">Netflix 4K family subscription</p>
-                          <p className="card-info">Two month free subscription</p>
-                        </div>
+          {action === "T" && (
+            <>
+              {isLoading ? (
+                <div className="loading-message">Cargando libros...</div>
+              ) : (
+                books.map((book) => (
+                  <div key={book.id}>
+                    <div className="custom-card">
+                      <div className="image-container">
+                        <img src={book.coverPhoto} alt={book.name} className="card-image" />
+                      </div>
+                      <div className="card-content">
+                        <h3 className="card-title">{book.name}</h3>
+                        <p className="card-description">{book.categoryId}</p>
+                        <p className="card-info">{book.publisherId}</p>
+                      </div>
                       {isAdmin && (
-                        <>
-                          <div className="card-actions">
-                            <button
-                              onClick={() => onEliminar(book.id)}
-                              className="btn btn-delete"
-                              disabled={deletingBookId === book.id}
-                            >
-                              {deletingBookId === book.id ? "Eliminando..." : "Eliminar"}
-                            </button>
+                        <div className="card-actions">
+                          <button
+                            onClick={() => onEliminar(book.id)}
+                            className="btn btn-delete"
+                            disabled={deletingBookId === book.id}
+                          >
+                            {deletingBookId === book.id ? "Eliminando..." : "Eliminar"}
+                          </button>
 
-                            <button
-                              type="button"
-                              className="btn btn-primary create-library-btn"
-                              onClick={() => onActualizar(book)}
-                            >
-                              Actualizar
-                            </button>
-                          </div>
-                        </>
+                          <button
+                            type="button"
+                            className="btn btn-primary create-library-btn"
+                            onClick={() => onActualizar(book)}
+                          >
+                            Actualizar
+                          </button>
+                        </div>
                       )}
                     </div>
-                    </div>
-                  ))
+                  </div>
+                ))
+              )}
+              <div className="create-book-button-container">
+                {isAdmin && (
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-primary create-book-btn"
+                      onClick={onRegistro}
+                    >
+                      Crear Libro
+                    </button>
+                  </div>
                 )}
-                <div className="create-book-button-container">
-                  {isAdmin && (
-                    <div>
-                      <button
-                        type="button"
-                        className="btn btn-primary create-book-btn"
-                        onClick={onRegistro}
-                      >
-                        Crear Libro
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
-
+              </div>
+            </>
+          )}
           {
             action !== "T" && (
               <Registro onVolver={onVolver} onSubmit={onSubmit} item={item} authors={authors} publishers={publishers} categories={categories} isSubmitting={isSubmitting}></Registro>
