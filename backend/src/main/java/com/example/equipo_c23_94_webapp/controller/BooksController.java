@@ -5,17 +5,17 @@ import com.example.equipo_c23_94_webapp.dto.BookDtoRes;
 import com.example.equipo_c23_94_webapp.dto.req.BookDtoReq;
 import com.example.equipo_c23_94_webapp.entity.*;
 import com.example.equipo_c23_94_webapp.mapper.BookMapper;
-import com.example.equipo_c23_94_webapp.services.AuthorService;
-import com.example.equipo_c23_94_webapp.services.BooksService;
-import com.example.equipo_c23_94_webapp.services.CategoryService;
-import com.example.equipo_c23_94_webapp.services.PublisherService;
+import com.example.equipo_c23_94_webapp.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000" }, methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE,
@@ -28,19 +28,28 @@ public class BooksController {
     private final AuthorService authorService;
     private final CategoryService categoryService;
     private final PublisherService publisherService;
+    private final LoanService loanService;
 
 
-    public BooksController(BooksService booksService, AuthorService authorService, CategoryService categoryService, PublisherService publisherService) {
+    public BooksController(BooksService booksService, AuthorService authorService, CategoryService categoryService, PublisherService publisherService, LoanService loanService) {
         this.booksService = booksService;
         this.authorService = authorService;
         this.categoryService = categoryService;
         this.publisherService = publisherService;
+        this.loanService = loanService;
     }
 
     @GetMapping("/books/{id}")
     public ResponseEntity<BookDtoRes> getBookById(@PathVariable Long id) {
-        BookDtoRes bookDtoRes = booksService.getBook(id);
-        return ResponseEntity.ok(bookDtoRes);
+        Books book = booksService.findById(id);
+        List<Loans> loansLibro = book.getLoan();
+        loansLibro.forEach(l -> {
+            if (l.getReturnDate().isEqual(LocalDate.now())) {
+                book.setCopies(book.getCopies()+1);
+                booksService.updateBookBDA(book);
+            }
+        });
+        return ResponseEntity.ok(BookMapper.toDTO(book));
     }
 
     @GetMapping("/books")

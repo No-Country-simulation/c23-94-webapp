@@ -20,7 +20,8 @@ public enum Role {
             Permission.READ_ONE_AUTHOR, // Ver un autor específico
             Permission.READ_ALL_REVIEWS, // Ver todas las reseñas
             Permission.READ_ONE_REVIEW, // Ver una reseña específica
-            Permission.SAVE_ONE_REVIEW // Crear una reseña
+            Permission.SAVE_ONE_REVIEW, // Crear una reseña
+            Permission.READ_ALL_PUBLISHERS
     )),
 
     ADMIN(Arrays.asList(

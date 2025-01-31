@@ -50,11 +50,12 @@ public class LoansController {
         Users user = userServis.findById(loanDtoReq.userId());
         Books book = booksService.findById(loanDtoReq.bookId());
         Loans loan = LoanMapper.toLoan(loanDtoReq, user, book);
+        LoanDtoRes loanDtoRes = loanService.createLoan(loan);
         user.addLoan(loan);
         book.addLoan(loan);
+        book.setCopies(book.getCopies()-1);
         userServis.updateUserBDA(user);
         booksService.updateBookBDA(book);
-        LoanDtoRes loanDtoRes = loanService.createLoan(loan);
         return ResponseEntity.ok(loanDtoRes);
     }
 
