@@ -1,7 +1,6 @@
 package com.example.equipo_c23_94_webapp.dto;
 
 
-import java.util.Collection;
 import java.util.List;
 
 public record BookDtoRes(
@@ -14,7 +13,7 @@ public record BookDtoRes(
         String coverPhoto,
         int copies,
         Long publisherId,
-        Long categoyId,
+        Long categoryId,
         Long authorId,
         String createdAt,
         String updatedAt,
