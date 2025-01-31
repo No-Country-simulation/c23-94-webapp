@@ -11,7 +11,6 @@ export default function Registro({ onSubmit, item, onVolver, authors, publishers
         e.preventDefault();
         onVolver();
     };
-    console.log(item)
     return (
         <>
             <div className="container_app">

@@ -275,7 +275,7 @@ const Library = () => {
           }
           {
             action === "C" && (
-              <Consulta onVolver={onVolver} bookQuery={bookQuery} authors={authors} publishers={publishers} categories={categories} isSubmitting={isSubmitting}></Consulta>
+              <Consulta onVolver={onVolver} bookQuery={bookQuery} authors={authors} publishers={publishers} categories={categories}></Consulta>
             )
           }
         </>

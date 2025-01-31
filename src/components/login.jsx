@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const LoginModal = ({ isOpen, onClose, openModal }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   if (!isOpen) return null;
@@ -42,6 +43,7 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
         const data = await response.json();
         localStorage.setItem('token', data.data.jwt);
         localStorage.setItem('username', username);
+        localStorage.setItem("email", email)
         const decodedToken = jwtDecode(data.data.jwt);
         const role = decodedToken.role;
         localStorage.setItem('role', role);

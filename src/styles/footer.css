@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    flex: 1;
+  }
+  
+  footer {
+    background-color: rgba(139, 83, 55, 0.7);
+    text-align: center;
+    padding: 5px;
+  }
+
+  footer p{
+    color: white;
+  }
+  

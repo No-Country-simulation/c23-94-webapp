@@ -1,4 +1,5 @@
 const URL = "http://localhost:8080/api/v1/books";
+const URLoans = "http://localhost:8080/api/v1/loans";
 
 const getAll = async () => {
     
@@ -199,6 +200,39 @@ const save = async (data) => {
     }
 };
 
+const saveReserva = async (data) => {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token no encontrado. Por favor, inicie sesión.');
+        }
+
+        const config = {
+            method: data.id ? 'PUT' : 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+        };
+
+        const url = data.id ? `${URL}/${data.id}` : URL;
+
+        const response = await fetch(url, config);
+
+        if (!response.ok) {
+            const errorMessage = await response.text(); // Obtener el mensaje de error
+            throw new Error(`Error en la solicitud de guardar: ${errorMessage}`);
+        }
+
+        const responseData = await response.json();
+        return responseData;
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
+        throw error;
+    }
+};
+
 const remove = async (id) => {
     const urlNueva = `${URL}/${id}`;
     const token = localStorage.getItem('token');
@@ -225,4 +259,4 @@ const remove = async (id) => {
 
 
 
-export default { remove, getAll, getOneBook, save, getNombresAuthors, getNombresCategories, getNombresPublishers, getCategoryById};
+export default { remove, saveReserva, getAll, getOneBook, save, getNombresAuthors, getNombresCategories, getNombresPublishers, getCategoryById};

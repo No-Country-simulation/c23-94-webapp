@@ -159,24 +159,22 @@ const onFiltrar = async(filter) => {
               <div className="loading-message">Cargando autores...</div>
             ) : (
               authors.map((author) => (<div className="author-card" key={author.id}>
-                <div className="author-info">
+                <div>
                   <h3>{author.name} {author.lastName}</h3>
                   <p>{author.country}</p>
-                  <p className="bio">{author.biography}</p>
+                  <p>{author.biography}</p>
                 </div>
                 {isAdmin && (
-                  <div className="card-actions">
-                    <button onClick={() => onEliminar(author.id)} className="btn btn-delete">
+                  <>
+                  <div>
+                    <button type="button" className="btn btn-danger me-2" onClick={() => onEliminar(author.id)} >
                       Eliminar
                     </button>
-                    <button
-                      type="button"
-                      className="btn btn-primary create-author-btn"
-                      onClick={() => onActualizar(author)}
-                    >
-                      Actualizar Autor
+                    <button type="button" className="btn btn-primary" onClick={() => onActualizar(author)}>
+                      Actualizar autor
                     </button>
                   </div>
+                  </>
                 )}
               </div>
               

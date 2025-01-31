@@ -25,7 +25,7 @@ const Navbar = ({ openModal, openLoginModal }) => {
     };
 
     return (
-        <nav className="navbar navbar-translucent fixed-top" style={{ backgroundColor: 'rgba(139, 83, 55, 0.7)' }}>
+        <nav className="navbar navbar-translucent fixed-top" style={{ backgroundColor: 'hsla(20, 43.30%, 38.00%, 0.70)' }}>
             <div className="container-fluid">
                 <div className="offcanvas offcanvas-start" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div className="offcanvas-header center-img">
