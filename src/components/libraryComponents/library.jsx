@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import servicesBooks from "../../services/serviceLibrary"
 import Registro from "./Registro"
+import serviceLibrary from "../../services/serviceLibrary";
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -19,6 +20,20 @@ const Library = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [deletingBookId, setDeletingBookId] = useState(null);
 
+    const onCategories = async () => {
+      const eq = await servicesBooks.getNombresCategories();
+      setCategories(eq);
+  };
+
+  const onAuthors = async () => {
+    const eq = await servicesBooks.getNombresAuthors()
+    setAuthors(eq)
+  }
+
+  const onPublishers = async () => {
+    const eq = await servicesBooks.getNombresPublishers()
+    setPublishers(eq)
+  }
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -28,7 +43,9 @@ const Library = () => {
           setIsSessionExpired(true);
           throw new Error('Token no encontrado. Por favor, inicie sesión.');
         }
-
+        onAuthors();
+        onCategories();
+        onPublishers();
         const response = await fetch('http://localhost:8080/api/v1/books', {
           method: 'GET',
           headers: {
@@ -76,7 +93,6 @@ const Library = () => {
 
       setBooks(res);
       setIsLoading(false);
-
       const role = localStorage.getItem('role');
       if (role === 'ADMIN') {
         setIsAdmin(true);
@@ -88,20 +104,6 @@ const Library = () => {
       setIsLoading(false);
     }
   };
-
-
-  const onAuthors = async () => {
-    const eq = await servicesBooks.getNombresAuthors()
-    setAuthors(eq)
-  }
-  const onPublishers = async () => {
-    const eq = await servicesBooks.getNombresPublishers()
-    setPublishers(eq)
-  }
-  const onCategories = async () => {
-    const eq = await servicesBooks.getNombresCategories()
-    setCategories(eq)
-  }
   const onSubmit = async (data) => {
     if (isSubmitting) return; 
     setIsSubmitting(true);     
@@ -203,8 +205,12 @@ const Library = () => {
                       </div>
                       <div className="card-content">
                         <h3 className="card-title">{book.name}</h3>
-                        <p className="card-description">{book.categoryId}</p>
-                        <p className="card-info">{book.publisherId}</p>
+                        <p className="card-description"> {categories.length > 0 
+                                    ? categories.find(cat => cat.id === book.categoryId)?.name 
+                                    : "Cargando..."}</p>
+                        <p className="card-info">{publishers.length > 0 
+                                    ? publishers.find(pub => pub.id === book.publisherId)?.name 
+                                    : "Cargando..."}</p>
                       </div>
                       {isAdmin && (
                         <div className="card-actions">
