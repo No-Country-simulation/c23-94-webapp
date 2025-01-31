@@ -44,7 +44,7 @@ public class BooksController {
         Books book = booksService.findById(id);
         List<Loans> loansLibro = book.getLoan();
         loansLibro.forEach(l -> {
-            if (l.getReturnDate().isEqual(LocalDate.now())) {
+            if (l.getDueDate().isEqual(LocalDate.now())) {
                 book.setCopies(book.getCopies()+1);
                 booksService.updateBookBDA(book);
             }

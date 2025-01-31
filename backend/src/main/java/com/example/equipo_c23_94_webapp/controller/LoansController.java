@@ -43,7 +43,6 @@ public class LoansController {
         return ResponseEntity.ok(loanDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/loans")
     public ResponseEntity<LoanDtoRes> createLoan(@RequestBody LoanDtoReq loanDtoReq) {
 
@@ -59,7 +58,6 @@ public class LoansController {
         return ResponseEntity.ok(loanDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/loans/{id}")
     public ResponseEntity<LoanDtoRes> updateLoan(@PathVariable Long id,
                                                  @RequestBody LoanDtoReq loanDtoReq) {
@@ -67,7 +65,6 @@ public class LoansController {
         return ResponseEntity.ok(loanDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/loans/{id}")
     public ResponseEntity<String> deleteLoan(@PathVariable Long id) {
         loanService.deleteLoan(id);

@@ -20,7 +20,7 @@ public class LoanMapper {
         return new LoanDtoRes(
                 loans.getId(),
                 loans.getLoanDate(),
-                loans.getDue_date(),
+                loans.getDueDate(),
                 loans.getReturnDate(),
                 loans.getStatus(),
                 loans.getUser().getId(),

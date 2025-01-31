@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class Loans {
@@ -20,7 +19,9 @@ public class Loans {
 
     @Column(name = "loan_date")
     private java.time.LocalDate loanDate;
-    private java.time.LocalDate due_date;
+
+    @Column(name = "due_date")
+    private java.time.LocalDate dueDate;
 
     @Column(name = "return_date")
     private java.time.LocalDate returnDate;
@@ -34,13 +35,16 @@ public class Loans {
     @JoinColumn(name = "books_id", nullable = false)
     private Books book;
 
-    public Loans(LocalDate loanDate, LocalDate due_date, LocalDate returnDate, String status, Users user, Books book) {
+    public Loans(LocalDate loanDate, LocalDate dueDate, LocalDate returnDate, String status, Users user, Books book) {
         this.loanDate = loanDate;
-        this.due_date = due_date;
+        this.dueDate = dueDate;
         this.returnDate = returnDate;
         this.status = status;
         this.user = user;
         this.book = book;
+    }
+
+    public Loans() {
     }
 
     public Long getId() {
@@ -59,12 +63,12 @@ public class Loans {
         this.loanDate = loanDate;
     }
 
-    public LocalDate getDue_date() {
-        return due_date;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setDue_date(LocalDate due_date) {
-        this.due_date = due_date;
+    public void setDueDate(LocalDate due_date) {
+        this.dueDate = due_date;
     }
 
     public LocalDate getReturnDate() {

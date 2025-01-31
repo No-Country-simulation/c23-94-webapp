@@ -52,7 +52,7 @@ public class LoanServiceImpl implements LoanService {
         Books book = booksRepository.findById(loanDtoReq.bookId()).orElseThrow(() ->
                 new NotFoundException("No se encontro el book"));
         loans.setLoanDate(loanDtoReq.loanDate());
-        loans.setDue_date(loanDtoReq.dueDate());
+        loans.setDueDate(loanDtoReq.dueDate());
         loans.setStatus(loanDtoReq.status());
         loans.setReturnDate(loanDtoReq.returnDate());
         loans.setBook(book);

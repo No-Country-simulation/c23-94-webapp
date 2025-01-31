@@ -112,6 +112,8 @@ public class SecurityFilter {
                                         .hasAuthority(Permission.READ_ALL_USERS.name());
                                         authConfig.requestMatchers(HttpMethod.GET, "/api/v1/users/{id}")
                                         .hasAuthority(Permission.READ_ONE_USER.name());
+                                        authConfig.requestMatchers(HttpMethod.GET, "/api/v1/users/email/{email}")
+                                                .hasAuthority(Permission.READ_ONE_USER.name());
                                         authConfig.requestMatchers(HttpMethod.POST, "/api/v1/users")
                                         .hasAuthority(Permission.SAVE_ONE_USER.name());
                                         authConfig.requestMatchers(HttpMethod.PUT, "/api/v1/users/{id}")

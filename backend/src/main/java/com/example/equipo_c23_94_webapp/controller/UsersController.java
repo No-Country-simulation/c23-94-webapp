@@ -31,11 +31,15 @@ public class UsersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/users/{id}")
     public ResponseEntity<UserDtoRes> getUserById(@PathVariable Long id) {
         UserDtoRes user = userServis.getUser(id);
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/users/email/{email}")
+    public ResponseEntity<UserDtoRes> getUserByEmail(@PathVariable String email) {
+        UserDtoRes user = userServis.getUserbyEmail(email);
         return ResponseEntity.ok(user);
     }
 
