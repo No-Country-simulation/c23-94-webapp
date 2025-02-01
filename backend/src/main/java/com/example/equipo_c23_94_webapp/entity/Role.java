@@ -24,6 +24,7 @@ public enum Role {
             Permission.READ_ALL_PUBLISHERS,
             Permission.SAVE_ONE_LOAN,
             Permission.READ_ALL_LOANS,
+            Permission.READ_ONE_LOAN,
             Permission.READ_ONE_USER
     )),
 

@@ -57,6 +57,7 @@ public class LoanServiceImpl implements LoanService {
         loans.setReturnDate(loanDtoReq.returnDate());
         loans.setBook(book);
         loans.setUser(user);
+        loansRepository.save(loans);
         return LoanMapper.toDTO(loans);
     }
 
