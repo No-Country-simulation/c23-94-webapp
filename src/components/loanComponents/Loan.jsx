@@ -23,8 +23,7 @@ const Loan = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [rows, setRows] = useState([])
   const [isLoadingLoans, setIsLoadingLoans] = useState(null);
-
-
+  const [deletingLoanId, setDeletingLoanId] = useState(null);
 
   const onCategories = async () => {
     const eq = await servicesBooks.getNombresCategories();
@@ -132,12 +131,7 @@ const Loan = () => {
     }
   };
 
-  const onActualizarAdmin = async (item) => {
-    setItem(item)
-    setAction("R")
-  }
-
-  const onActualizarUser = async (item) => {
+  const onActualizar = async (item) => {
     setItem(item)
     setAction("R")
   }
@@ -147,15 +141,50 @@ const Loan = () => {
     window.location.reload();  
   }
 
-  const onConsultarHistorial = async (id) => {
-    setIsLoadingLoans(id);  
-    const book = await servicesBooks.getOneBook(id);
-    setBookQuery(book);
-    const loans = await servicesLoans.getObjectsLoans(book.id);
-    setRows(loans);
-    setAction("T");
-    setIsLoadingLoans(id); 
+  const onEliminar = async (id) => {
+    setDeletingLoanId(id);
+    try {
+      await servicesLoans.remove(id);
+
+      setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
+
+      setTimeout(() => {
+        toast.success("Préstamo eliminado con éxito");
+      }, 100);
+      window.location.reload();
+      loadData();
+    } catch (error) {
+      setTimeout(() => {
+        toast.error("Error al eliminar el préstamo");
+      }, 100);
+      console.error("Error al eliminar el préstamo:", error);
+    } finally {
+      setDeletingLoanId(null);
+    }
   };
+
+  const onConsultarHistorial = async (id) => {
+    try {
+        setIsLoadingLoans(id);  
+        const book = await servicesBooks.getOneBook(id);
+        setBookQuery(book);
+        const loans = await servicesLoans.getObjectsLoans(book.id);
+        if (isAdmin) {
+            setRows(loans);  
+        } else {
+            const user = await servicesBooks.getIdUser(localStorage.getItem('email'));
+            const idUser = user.id;
+            const loansUser = loans.filter(l => l.userId === idUser);
+            setRows(loansUser);
+        }
+        setAction("T");
+    } catch (error) {
+        console.error("Error en onConsultarHistorial:", error);
+    } finally {
+        setIsLoadingLoans(null); 
+    }
+};
+
   
 
   if (isSessionExpired) {
@@ -200,7 +229,7 @@ const Loan = () => {
                           ? publishers.find(pub => pub.id === book.publisherId)?.name
                           : "Cargando..."}</p>
                       </div>
-                      {!isAdmin && (
+                      {(!isAdmin || isAdmin) && (
                         <div className="card-actions" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
                             <button
                             type="button"
@@ -219,7 +248,7 @@ const Loan = () => {
           )}
           {
             action === "T" && (
-              <Tabla onVolver={onVolver} rows={rows} isAdmin={isAdmin} onActualizarAdmin={onActualizarAdmin} onActualizarUser={onActualizarUser} item={item} isSubmitting={isSubmitting}></Tabla>
+              <Tabla onVolver={onVolver} rows={rows} isAdmin={isAdmin} onActualizar={onActualizar} item={item} isSubmitting={isSubmitting} onEliminar={onEliminar}></Tabla>
             )
           }
           {

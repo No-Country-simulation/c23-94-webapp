@@ -81,4 +81,28 @@ const save = async (data) => {
     }
 };
 
-export default { getObjectsLoans, save };
+const remove = async (id) => {
+    const urlNueva = `${urlBase}/${id}`;
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(urlNueva, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+
+    const responseText = await response.text();  
+
+    if (!response.ok) {
+        throw new Error(responseText);
+    }
+
+    console.log(responseText); 
+
+    return responseText;
+};
+
+
+export default { getObjectsLoans, save, remove};
