@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const LoginModal = ({ isOpen, onClose, openModal }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   if (!isOpen) return null;
@@ -16,7 +15,6 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
     e.preventDefault();
 
     if (!username || !password) {
-      // Si los campos están vacíos, mostrar un toast de error
       toast.error('Por favor, complete todos los campos.', {
         position: "top-right",
         autoClose: 3000,
@@ -43,8 +41,10 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
         const data = await response.json();
         localStorage.setItem('token', data.data.jwt);
         localStorage.setItem('username', username);
-        localStorage.setItem("email", email)
         const decodedToken = jwtDecode(data.data.jwt);
+        console.log(decodedToken); 
+        const email = decodedToken.email;
+        localStorage.setItem("email", email); 
         const role = decodedToken.role;
         localStorage.setItem('role', role);
 

@@ -1,0 +1,99 @@
+/* Estilos para la tarjeta */
+.card {
+    width: 100%;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* Estilos para el header de la tarjeta */
+.card-header {
+    background-color: #dcb997; /* Marrón claro */
+    color: #4b2f0c; /* Marrón oscuro */
+    padding: 16px 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Estilos para el cuerpo de la tarjeta */
+.card-body {
+    padding: 24px;
+    background-color: #ffffff;
+}
+
+/* Estilos para la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center; /* CENTRADO GLOBAL DE LOS DATOS EN LA TABLA */
+}
+
+.table th, .table td {
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.table th {
+    background-color: #f0f0f0;
+    color: #4b2f0c;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.table td {
+    background-color: #fafafa;
+    color: #555;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
+
+.table tr:hover {
+    background-color: #e6e6e6;
+}
+
+.table td, .table th {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para el contenedor del botón */
+.d-flex.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Separación del contenido superior */
+    margin-bottom: 10px; /* Espacio debajo del botón */
+}
+
+/* Estilo personalizado para el botón */
+.btn-custom {
+    background-color: #D49A6A; /* Marrón claro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-custom:hover {
+    background-color: #C0834E; /* Un marrón más oscuro al hacer hover */
+    transform: scale(1.05); /* Efecto de agrandado */
+}
+
+.btn-custom:active {
+    transform: scale(1); /* Vuelve al tamaño original al hacer clic */
+}

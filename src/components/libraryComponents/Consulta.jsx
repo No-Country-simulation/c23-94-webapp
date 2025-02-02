@@ -30,17 +30,28 @@ export default function Consulta({bookQuery, onVolver, authors, publishers, cate
 
     const onSubmitReserva = async (data) => {
         if (isSubmittingRe) return;
-            setIsSubmittingRe(true);
-            try {
-              await servicesBooks.saveReserva(data);
-              setActionC("C")
-              toast.success("Reserva creada con éxito...")
-            } catch (error) {
-              toast.error('Error al reservar el libro');
-            } finally {
-              setIsSubmittingRe(false);
+        setIsSubmittingRe(true);
+        try {    
+            if (!data.loanDate) {
+                throw new Error("La fecha de reserva es obligatoria");
             }
-    }
+            await servicesBooks.saveReserva(data);
+            toast.success("Reserva creada con éxito...");
+            setTimeout(() => {
+                setActionC("C");
+            }, 2000); 
+            window.location.reload();  
+        } catch (error) {
+            console.error("Error al reservar:", error);
+            toast.error(error.message || 'Error al reservar el libro');
+        } finally {
+            setIsSubmittingRe(false);
+        }
+    };
+    
+    
+    
+    
 
     return (
         <>
@@ -68,6 +79,7 @@ export default function Consulta({bookQuery, onVolver, authors, publishers, cate
                         <h6 className="card-text" style={{ fontSize: "14px", color: "#555" }}>Número de edición: {bookQuery.edition}</h6>
                         <h6 className="card-text" style={{ fontSize: "14px", color: "#555" }}>ISBN: {bookQuery.isbn}</h6>
                         <h6 className="card-text" style={{ fontSize: "14px", color: "#555" }}>Páginas: {bookQuery.numberPages}</h6>
+                        <h6 className="card-text" style={{ fontSize: "14px", color: "#555" }}>Copias: {bookQuery.copies}</h6>
                         <div className="d-flex justify-content-between">
                             <button className="btn btn-primary" onClick={onClickReservar}>Reservar</button>
                             <button className="btn btn-secondary" onClick={onClickVolver}>Volver</button>
@@ -78,6 +90,7 @@ export default function Consulta({bookQuery, onVolver, authors, publishers, cate
             {actionC !== "C" && (
                 <Reserva onSubmitReserva={onSubmitReserva} volverBook={volverBook} bookQuery={bookQuery} isSubmittingRe={isSubmittingRe}></Reserva>
             )}
+            <ToastContainer />
         </>
     
     );

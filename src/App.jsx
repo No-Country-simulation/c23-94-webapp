@@ -5,13 +5,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import HomePage from './components/homepage';
-import Comienzo from './components/comienzo';
+import Comienzo from "./components/comienzo";
 import { Navbar } from './components/navbar';
 import SignUpModal from './components/sign-up'; 
 import LoginModal from './components/login';
 import Library from './components/libraryComponents/library';
+import Loan from "./components/loanComponents/Loan"
 import Author from './components/authorsComponents/authors';
-import Footer from './components/footer';
 
 
 function App() {
@@ -19,7 +19,6 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <AppContent />
-      <Footer/>
     </BrowserRouter>
   );
 }
@@ -47,6 +46,7 @@ function AppContent() {
           <Route path="/comienzo" element={<Comienzo />} />
           <Route path="/library" element={<Library />}/>
           <Route path="/authors" element={<Author />}/>
+          <Route path="/loans" element={<Loan />}/>
           <Route path="*" element={<Navigate to="/homepage" />} />
         </Routes>
       </div>

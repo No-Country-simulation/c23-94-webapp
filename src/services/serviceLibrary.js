@@ -1,5 +1,6 @@
 const URL = "http://localhost:8080/api/v1/books";
 const URLoans = "http://localhost:8080/api/v1/loans";
+const urlUsers = "http://localhost:8080/api/v1/users";
 
 const getAll = async () => {
     
@@ -25,6 +26,30 @@ const getAll = async () => {
     }
 };
 
+const getIdUser = async(email) => {
+    const urlNueva = `${urlUsers}/email/${email}`;
+    console.log("urlnueva", urlNueva)
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(urlNueva, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        if (!res.ok) {
+            const errorMessage = await res.text(); 
+            throw new Error(`Error al obtener el user: ${res.status} - ${errorMessage}`);
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("Error al obtener el user:", error.message);
+        throw error; 
+    }
+}
 const getOneBook = async (id) => {
     const urlNueva = `${URL}/${id}`;
     const token = localStorage.getItem('token');
@@ -166,7 +191,6 @@ const getCategoryById = async (categoryId) => {
     }
 };
 
-
 const save = async (data) => {
     try {
         const token = localStorage.getItem('token');
@@ -202,13 +226,13 @@ const save = async (data) => {
 
 const saveReserva = async (data) => {
     try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');        
         if (!token) {
             throw new Error('Token no encontrado. Por favor, inicie sesión.');
         }
 
         const config = {
-            method: data.id ? 'PUT' : 'POST',
+            method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
@@ -216,12 +240,10 @@ const saveReserva = async (data) => {
             body: JSON.stringify(data),
         };
 
-        const url = data.id ? `${URL}/${data.id}` : URL;
-
-        const response = await fetch(url, config);
+        const response = await fetch(URLoans, config); 
 
         if (!response.ok) {
-            const errorMessage = await response.text(); // Obtener el mensaje de error
+            const errorMessage = await response.text(); 
             throw new Error(`Error en la solicitud de guardar: ${errorMessage}`);
         }
 
@@ -232,6 +254,7 @@ const saveReserva = async (data) => {
         throw error;
     }
 };
+
 
 const remove = async (id) => {
     const urlNueva = `${URL}/${id}`;
@@ -251,12 +274,12 @@ const remove = async (id) => {
         throw new Error(responseText);
     }
 
-    console.log(responseText);
-   
-    return responseText; 
+    console.log(responseText); 
+
+    return responseText;
 };
 
 
 
 
-export default { remove, saveReserva, getAll, getOneBook, save, getNombresAuthors, getNombresCategories, getNombresPublishers, getCategoryById};
+export default { remove, getIdUser, saveReserva, getAll, getOneBook, save, getNombresAuthors, getNombresCategories, getNombresPublishers, getCategoryById};
