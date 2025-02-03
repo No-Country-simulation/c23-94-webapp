@@ -7,6 +7,8 @@ import Registro from "./Registro";
 import Consulta from "./Consulta";
 import review from "../../assets/review.png"
 import { useNavigate } from "react-router-dom";
+import Review from "../reviewsComponents/review";
+import Reserva from "./Reserva";
 
 
 const Library = () => {
@@ -24,6 +26,7 @@ const Library = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [deletingBookId, setDeletingBookId] = useState(null);
   const [loadingBookId, setLoadingBookId] = useState(null);
+  const [isLoadingRe, setIsLoadingRe] = useState(true);
   const navigate = useNavigate();
 
 
@@ -196,6 +199,19 @@ const Library = () => {
     }
   };
 
+  const onConsultarReviews = async (id) => {
+    try {
+      const book = await servicesBooks.getOneBook(id);
+      setBookQuery(book);
+      setAction("O");
+    } catch (error) {
+      toast.error("Error al obtener el libro");
+      console.error("Error en la consulta del libro:", error);
+    } finally {
+      setIsLoadingRe(false);
+    }
+  }
+
   if (isSessionExpired) {
     return (
       <div className="session-expired">
@@ -230,7 +246,7 @@ const Library = () => {
                         <img src={book.coverPhoto} alt={book.name} className="card-image" />
                         <button
                           className="redirect-button"
-                          onClick={() => navigate(`/review/${book.id}`, { state: { book } })}>
+                          onClick={() => onConsultarReviews(book.id)}>
                           <img src={review} alt="Ir" className="icon-button" />
                         </button>
 
@@ -303,6 +319,12 @@ const Library = () => {
               <Consulta onVolver={onVolver} bookQuery={bookQuery} authors={authors} publishers={publishers} categories={categories}></Consulta>
             )
           }
+          {
+            action === "O" && (
+              <Review onVolver={onVolver} bookQuery={bookQuery}></Review>
+            )
+          }
+
         </>
       )}
 

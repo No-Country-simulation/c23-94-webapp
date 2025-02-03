@@ -7,15 +7,14 @@ import a2 from "../../assets/a2.png"
 import a3 from "../../assets/a3.png"
 import a4 from "../../assets/a4.png"
 import a5 from "../../assets/a5.png"
+import serviceLibrary from "../../services/serviceLibrary";
 
-const Review = () => {
-    const location = useLocation();
-    const book = location.state?.book;
+const Review = ({onVolver, bookQuery}) => {
     const [action, setAction] = useState("T");
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
+    const [book, setBook] = useState(bookQuery)
 
-    // Lista de posibles títulos para el autor de la reseña
     const authorTitles = [
         "Lector Aficionado",
         "Crítico Literario",
@@ -25,59 +24,93 @@ const Review = () => {
         "Curioso Literario"
     ];
 
-    // Lista de imágenes de avatares
     const avatarImages = [
-        a1,a2, a3, a4,a5
+        a1, a2, a3, a4, a5
     ];
 
-    // Función para obtener un título aleatorio
+    
     const getRandomAuthorTitle = () => {
         const randomIndex = Math.floor(Math.random() * authorTitles.length);
         return authorTitles[randomIndex];
     };
 
-    // Función para obtener una imagen de avatar aleatoria
+  
     const getRandomAvatar = () => {
         const randomIndex = Math.floor(Math.random() * avatarImages.length);
         return avatarImages[randomIndex];
     };
 
-    useEffect(() => {
-        if (book) {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('Token no encontrado. Por favor, inicie sesión.');
-                return; // No continuar si el token no está presente
-            }
     
-            const reviewIds = book.reviewsId; // Array de ids de reseñas asociadas al libro
+    const getAll = async (book) => {
+        if (!book) return [];
     
-            if (reviewIds && reviewIds.length > 0) {
-                Promise.all(
-                    reviewIds.map((reviewId) =>
-                        fetch(`http://localhost:8080/api/v1/reviews/${reviewId}`, {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('Token no encontrado. Por favor, inicie sesión.');
+            return [];
+        }
+    
+        const reviewIds = book.reviewsId;
+    
+        if (reviewIds && reviewIds.length > 0) {
+            try {
+                const reviewData = await Promise.all(
+                    reviewIds.map(async (reviewId) => {
+                        const response = await fetch(`http://localhost:8080/api/v1/reviews/${reviewId}`, {
                             method: 'GET',
                             headers: {
                                 "Content-Type": "application/json",
-                                Authorization: `Bearer ${token}`, 
+                                Authorization: `Bearer ${token}`,
                             },
-                        }).then((response) => response.json())
-                    )
-                )
-                    .then((reviewData) => {
-                        setReviews(reviewData || []);
-                        setLoading(false);
+                        });
+    
+                        if (!response.ok) {
+                            throw new Error(`Error al obtener review ${reviewId}: ${response.statusText}`);
+                        }
+    
+                        return response.json();
                     })
-                    .catch((error) => {
-                        console.error("Error fetching reviews:", error);
-                        setLoading(false);
-                    });
-            } else {
-                setLoading(false);
-                setReviews([]);
+                );
+                return reviewData;
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+                return []; // Devolvemos array vacío en caso de error
             }
         }
+        
+        return [];
+    };
+    
+    const loadData = async () => {
+        try {
+            const libroActualizado = await serviceLibrary.getOneBook(bookQuery.id);
+            const reviewData = await getAll(libroActualizado) 
+            setReviews(reviewData);
+            console.log("boooooooooooook", libroActualizado)
+        }catch (error) {
+            console.error("Error fetching reviews:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        const load = async () => {
+            setLoading(true);
+            try {
+                const reviewData = await getAll(book);
+                setReviews(reviewData);
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        load();
     }, [book]);
+
+    
     
 
     const handleNewReview = (reviewData) => {
@@ -91,7 +124,7 @@ const Review = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`, // Agregar el token aquí también
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(reviewData),
         })
@@ -99,11 +132,14 @@ const Review = () => {
             .then((data) => {
                 setReviews((prevReviews) => [...prevReviews, data]);
                 setAction("T");
+                loadData();
             })
             .catch((error) => {
                 console.error("Error submitting review:", error);
             });
     };
+
+    
 
     if (!book) {
         return <p>Error: No se encontró el libro.</p>;
@@ -147,17 +183,21 @@ const Review = () => {
                                 )}
                             </div>
 
+                            {/* Botón centrado y separado */}
+                            <div className="d-flex justify-content-center mt-4">
+                                <button
+                                    onClick={() => setAction("R")}
+                                    className="btn btn-primary me-5"
+                                >
+                                    Crear reseña
+                                </button>
+                                <button className="btn btn-primary" onClick={onVolver}>Libros</button>
+                            </div>
                         </div>
                     )}
-                    
-                    <button
-                                onClick={() => setAction("R")}
-                                className="btn btn-primary"
-                            >
-                                Crear reseña
-                            </button>
                 </>
             )}
+
             {action === "R" && <Registro book={book} onSubmit={handleNewReview} />}
         </div>
     );
