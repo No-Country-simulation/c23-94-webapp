@@ -48,9 +48,10 @@ public class ReviewController {
 
         Books book = booksService.findById(reviewDtoReq.bookId());
         Reviews review = ReviewMapper.toReview(reviewDtoReq, book);
-        book.addReview(review);
-        booksService.updateBookBDA(book);
         ReviewsDtoRes reviewsDtoRes = reviewService.createReview(review);
+
+        booksService.updateBookBDA(book);
+        book.addReview(review);
         return ResponseEntity.ok(reviewsDtoRes);
     }
 

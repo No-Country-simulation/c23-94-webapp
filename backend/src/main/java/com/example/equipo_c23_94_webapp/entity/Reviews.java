@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @ToString
 public class Reviews {
 
@@ -33,6 +32,9 @@ public class Reviews {
         this.comment = comment;
         this.created_at = created_at;
         this.book = book;
+    }
+
+    public Reviews() {
     }
 
     public Long getId() {
