@@ -5,6 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import servicesBooks from "../../services/serviceLibrary";
 import Registro from "./Registro";
 import Consulta from "./Consulta";
+import review from "../../assets/review.png"
+import { useNavigate } from "react-router-dom";
+
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -20,6 +23,9 @@ const Library = () => {
   const [bookQuery, setBookQuery] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [deletingBookId, setDeletingBookId] = useState(null);
+  const [loadingBookId, setLoadingBookId] = useState(null);
+  const navigate = useNavigate();
+
 
   const onCategories = async () => {
     const eq = await servicesBooks.getNombresCategories();
@@ -172,13 +178,23 @@ const Library = () => {
   }
 
   const onConsultarBook = async (id) => {
-    const book = await servicesBooks.getOneBook(id)
-    setBookQuery(book);
-    onAuthors();
-    onCategories();
-    onPublishers();
-    setAction("C");
-  }
+    if (loadingBookId) return;
+    setLoadingBookId(id);
+
+    try {
+      const book = await servicesBooks.getOneBook(id);
+      setBookQuery(book);
+      onAuthors();
+      onCategories();
+      onPublishers();
+      setAction("C");
+    } catch (error) {
+      toast.error("Error al obtener el libro");
+      console.error("Error en la consulta del libro:", error);
+    } finally {
+      setLoadingBookId(null);
+    }
+  };
 
   if (isSessionExpired) {
     return (
@@ -212,6 +228,12 @@ const Library = () => {
                     <div className="custom-card">
                       <div className="image-container">
                         <img src={book.coverPhoto} alt={book.name} className="card-image" />
+                        <button
+                          className="redirect-button"
+                          onClick={() => navigate(`/review/${book.id}`, { state: { book } })}>
+                          <img src={review} alt="Ir" className="icon-button" />
+                        </button>
+
                       </div>
                       <div className="card-content">
                         <h3 className="card-title">{book.name}</h3>
@@ -246,7 +268,10 @@ const Library = () => {
                           <button
                             onClick={() => onConsultarBook(book.id)}
                             className="btn btn-primary"
-                          >Consultar</button>
+                            disabled={loadingBookId === book.id} 
+                          >
+                            {loadingBookId === book.id ? "Cargando..." : "Consultar"}
+                          </button>
                         </div>
                       )}
                     </div>

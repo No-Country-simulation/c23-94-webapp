@@ -12,6 +12,8 @@ import LoginModal from './components/login';
 import Library from './components/libraryComponents/library';
 import Loan from "./components/loanComponents/Loan"
 import Author from './components/authorsComponents/authors';
+import Footer from './components/footer'
+import Review from './components/reviewsComponents/review';
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <AppContent />
+      <Footer />
     </BrowserRouter>
   );
 }
@@ -47,6 +50,7 @@ function AppContent() {
           <Route path="/library" element={<Library />}/>
           <Route path="/authors" element={<Author />}/>
           <Route path="/loans" element={<Loan />}/>
+          <Route path="/review/:id" element={<Review />} />
           <Route path="*" element={<Navigate to="/homepage" />} />
         </Routes>
       </div>
