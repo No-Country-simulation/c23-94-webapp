@@ -17,6 +17,7 @@ const Navbar = ({ openModal, openLoginModal }) => {
 
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email')
 
     const handleLogout = () => {
         localStorage.removeItem('username');
@@ -61,7 +62,12 @@ const Navbar = ({ openModal, openLoginModal }) => {
                                     <span className="ms-2 text-white">{username}</span>
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><NavLink className="dropdown-item" to="/profile">Perfil</NavLink></li>
+                                    <li>  <NavLink 
+                                                className="dropdown-item" 
+                                                to={`/profile/${email}`}  // Pasamos el email como parámetro en la URL
+                                            >
+                                                Perfil
+                                            </NavLink></li>
                                     <li><button className="dropdown-item" onClick={handleLogout}>Cerrar sesión</button></li>
                                 </ul>
                             </div>

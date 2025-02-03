@@ -14,6 +14,7 @@ import Loan from "./components/loanComponents/Loan"
 import Author from './components/authorsComponents/authors';
 import Footer from './components/footer'
 import Review from './components/reviewsComponents/review';
+import User from "./components/profileComponents/User"
 
 
 function App() {
@@ -51,6 +52,7 @@ function AppContent() {
           <Route path="/authors" element={<Author />}/>
           <Route path="/loans" element={<Loan />}/>
           <Route path="/review/:id" element={<Review />} />
+          <Route path="/profile/:email" element={<User />} />
           <Route path="*" element={<Navigate to="/homepage" />} />
         </Routes>
       </div>
