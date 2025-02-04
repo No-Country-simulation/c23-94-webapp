@@ -36,14 +36,12 @@ public class AuthorsController {
         return ResponseEntity.ok(authorDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/authors")
     public ResponseEntity<AuthorDtoRes> createAuthor(@RequestBody AuthorDtoReq authorDtoReq) {
         AuthorDtoRes authorDtoRes = service.createAuthor(authorDtoReq);
         return ResponseEntity.ok(authorDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/authors/{id}")
     public ResponseEntity<AuthorDtoRes> updateAuthor(@PathVariable Long id,
     @RequestBody AuthorDtoReq authorDtoReq) {
@@ -51,7 +49,6 @@ public class AuthorsController {
         return ResponseEntity.ok(authorDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/authors/{id}")
     public ResponseEntity<String> deleteAuthor(@PathVariable Long id) {
         service.deleteAuthor(id);

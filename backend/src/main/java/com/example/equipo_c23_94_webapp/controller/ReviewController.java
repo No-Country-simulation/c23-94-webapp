@@ -42,7 +42,6 @@ public class ReviewController {
         return ResponseEntity.ok(reviewsDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/reviews")
     public ResponseEntity<ReviewsDtoRes> createReview(@RequestBody ReviewDtoReq reviewDtoReq) {
 
@@ -55,7 +54,6 @@ public class ReviewController {
         return ResponseEntity.ok(reviewsDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/reviews/{id}")
     public ResponseEntity<ReviewsDtoRes> updateReview(@PathVariable Long id,
                                                  @RequestBody ReviewDtoReq reviewDtoReq) {
@@ -63,7 +61,6 @@ public class ReviewController {
         return ResponseEntity.ok(reviewsDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/reviews/{id}")
     public ResponseEntity<String> deleteReview(@PathVariable Long id) {
         reviewService.deleteReview(id);

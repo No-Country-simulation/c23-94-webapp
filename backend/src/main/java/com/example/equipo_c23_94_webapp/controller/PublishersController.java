@@ -36,14 +36,12 @@ public class PublishersController {
         return ResponseEntity.ok(publisherDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/publishers")
     public ResponseEntity<PublisherDtoRes> createPublisher(@RequestBody PublisherDtoReq publisherDtoReq) {
         PublisherDtoRes publisherDtoRes = service.createPublisher(publisherDtoReq);
         return ResponseEntity.ok(publisherDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/publishers/{id}")
     public ResponseEntity<PublisherDtoRes> updatePublisher(@PathVariable Long id,
                                                          @RequestBody PublisherDtoReq publisherDtoReq) {
@@ -51,7 +49,6 @@ public class PublishersController {
         return ResponseEntity.ok(publisherDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/publishers/{id}")
     public ResponseEntity<String> deletePublisher(@PathVariable Long id) {
         service.deletePublisher(id);

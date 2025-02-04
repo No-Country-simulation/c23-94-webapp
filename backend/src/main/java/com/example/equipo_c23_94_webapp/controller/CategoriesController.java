@@ -37,14 +37,12 @@ public class CategoriesController {
         return ResponseEntity.ok(categoryDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/categories")
     public ResponseEntity<CategoryDtoRes> createCategory(@RequestBody CategoryDtoReq categoryDtoReq) {
         CategoryDtoRes categoryDtoRes = service.createCategory(categoryDtoReq);
         return ResponseEntity.ok(categoryDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/categories/{id}")
     public ResponseEntity<CategoryDtoRes> updateCategory(@PathVariable Long id,
                                                      @RequestBody CategoryDtoReq categoryDtoReq) {
@@ -52,7 +50,6 @@ public class CategoriesController {
         return ResponseEntity.ok(categoryDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
         service.deleteCategory(id);

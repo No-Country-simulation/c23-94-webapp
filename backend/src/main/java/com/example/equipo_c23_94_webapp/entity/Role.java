@@ -25,7 +25,9 @@ public enum Role {
             Permission.SAVE_ONE_LOAN,
             Permission.READ_ALL_LOANS,
             Permission.READ_ONE_LOAN,
-            Permission.READ_ONE_USER
+            Permission.READ_ONE_USER,
+            Permission.UPDATE_ONE_LOAN,
+            Permission.DELETE_ONE_LOAN
     )),
 
     ADMIN(Arrays.asList(

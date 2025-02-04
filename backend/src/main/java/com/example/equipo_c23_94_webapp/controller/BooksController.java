@@ -58,7 +58,6 @@ public class BooksController {
         return ResponseEntity.ok(bookDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/books")
     public ResponseEntity<BookDtoRes> createBook(@RequestBody BookDtoReq bookDtoReq) {
         Authors author = authorService.findById(bookDtoReq.authorId());
@@ -82,7 +81,6 @@ public class BooksController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/books/{id}")
     public ResponseEntity<BookDtoRes> updateBook(@PathVariable Long id,
                                                      @RequestBody BookDtoReq bookDtoReq) {
@@ -90,7 +88,6 @@ public class BooksController {
         return ResponseEntity.ok(bookDtoRes);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/books/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Long id) {
         booksService.deleteBook(id);
