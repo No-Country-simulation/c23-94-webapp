@@ -95,7 +95,7 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
             <div className="flex-grow-1">
               {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
               <Form onSubmit={handleLogin}>
-                <Form.Group controlId="formLoginUsername" className="floating-label-group">
+                <Form.Group controlId="formLoginUsername" className="floating-label-group mt-4">
                   <Form.Control
                     type="text"
                     placeholder=" "

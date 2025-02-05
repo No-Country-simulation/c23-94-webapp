@@ -237,59 +237,68 @@ const Library = () => {
           {action === "T" && (
             <>
               {isLoading ? (
-                <div className="loading-message">Cargando libros...</div>
+                <div className="loading-message">
+                  <p>Cargando libros...</p>
+                  <div className="loading-gif" />
+                </div>
               ) : (
                 books.map((book) => (
                   <div key={book.id}>
-                    <div className="custom-card">
-                      <div className="image-container">
-                        <img src={book.coverPhoto} alt={book.name} className="card-image" />
-                        <button
+                    <div className="book">
+                      <div className="gloss"></div>
+                      <img className="cover" src={book.coverPhoto} />
+                      <div className="description">
+                        <h1 className="title"><strong>{book.name}<button onClick={() => onConsultarReviews(book.id)}
                           className="redirect-button"
-                          onClick={() => onConsultarReviews(book.id)}>
+                          >
                           <img src={review} alt="Ir" className="icon-button" />
-                        </button>
-
-                      </div>
-                      <div className="card-content">
-                        <h3 className="card-title">{book.name}</h3>
-                        <p className="card-description">Categoría: {categories.length > 0
+                        </button></strong></h1>
+                        <hr />
+                        <p>Categoría: {categories.length > 0
                           ? categories.find(cat => cat.id === book.categoryId)?.name
-                          : "Cargando..."}</p>
-                        <p className="card-info">Editorial: {publishers.length > 0
+                          : "Cargando..."} </p>
+                        <p>Editorial: {publishers.length > 0
                           ? publishers.find(pub => pub.id === book.publisherId)?.name
                           : "Cargando..."}</p>
-                      </div>
-                      {isAdmin && (
-                        <div className="card-actions">
-                          <button
-                            onClick={() => onEliminar(book.id)}
-                            className="btn btn-delete"
-                            disabled={deletingBookId === book.id}
-                          >
-                            {deletingBookId === book.id ? "Eliminando..." : "Eliminar"}
-                          </button>
+                        <p>Autor: {authors.length > 0
+                          ? (() => {
+                              const author = authors.find(aut => aut.id === book.authorId);
+                              return author ? `${author.name} ${author.lastName}` : "Autor no encontrado";
+                            })()
+                          : "Cargando..."}</p>
+                        <blockquote>
+                          </blockquote>
+                        {isAdmin && (
+                          <div className="card-actions">
+                            <button
+                              onClick={() => onEliminar(book.id)}
+                              className="btn btn-delete"
+                              disabled={deletingBookId === book.id}
+                            >
+                              {deletingBookId === book.id ? "Eliminando..." : "Eliminar"}
+                            </button>
 
-                          <button
-                            type="button"
-                            className="btn btn-primary create-library-btn"
-                            onClick={() => onActualizar(book)}
-                          >
-                            Actualizar
-                          </button>
-                        </div>
-                      )}
-                      {!isAdmin && (
-                        <div className="card-actions" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                          <button
-                            onClick={() => onConsultarBook(book.id)}
-                            className="btn btn-primary"
-                            disabled={loadingBookId === book.id} 
-                          >
-                            {loadingBookId === book.id ? "Cargando..." : "Consultar"}
-                          </button>
-                        </div>
-                      )}
+                            <button
+                              type="button"
+                              className="btn btn-primary "
+                              onClick={() => onActualizar(book)}
+                            >
+                              Actualizar
+                            </button>
+                          </div>
+                        )}
+                        {!isAdmin && (
+                          <div className="card-actions" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <button
+                              onClick={() => onConsultarBook(book.id)}
+                              className="btn btn-primary"
+                              disabled={loadingBookId === book.id}
+                            >
+                              {loadingBookId === book.id ? "Cargando..." : "Consultar"}
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))

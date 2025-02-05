@@ -156,10 +156,13 @@ const onFiltrar = async(filter) => {
           action === "T" && (
             <>
             {isLoading ? (
-              <div className="loading-message">Cargando autores...</div>
+              <div className="loading-message">
+                  <p>Cargando autores...</p>
+                  <div className="loading-gif" />
+                </div>
             ) : (
               authors.map((author) => (<div className="author-card" key={author.id}>
-                <div>
+                <div style={{marginTop:"40px"}}>
                   <h3>{author.name} {author.lastName}</h3>
                   <p>{author.country}</p>
                   <p>{author.biography}</p>

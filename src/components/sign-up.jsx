@@ -81,7 +81,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
           <div className="flex-grow-1">
             {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
             <Form onSubmit={handleSignUp}>
-              <Form.Group controlId="formBasicLastName" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicLastName" className="floating-label-group mt-4">
                 <Form.Control
                   type="text"
                   placeholder=" "
@@ -93,7 +93,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Apellido</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicUsername" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicUsername" className="floating-label-group mt-4">
                 <Form.Control
                   type="text"
                   placeholder=" "
@@ -105,7 +105,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Nombre de usuario</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicEmail" className="floating-label-group mt-4">
                 <Form.Control
                   type="email"
                   placeholder=" "
@@ -117,7 +117,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Email</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicPassword" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicPassword" className="floating-label-group mt-4">
                 <Form.Control
                   type="password"
                   placeholder=" "
@@ -129,7 +129,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Contraseña</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicConfirmPassword" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicConfirmPassword" className="floating-label-group mt-4">
                 <Form.Control
                   type="password"
                   placeholder=" "
@@ -141,7 +141,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Confirmar Contraseña</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicPhone" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicPhone" className="floating-label-group mt-4">
                 <Form.Control
                   type="text"
                   placeholder=" "
@@ -153,7 +153,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Teléfono</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicAddress" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicAddress" className="floating-label-group mt-4">
                 <Form.Control
                   type="text"
                   placeholder=" "
@@ -165,7 +165,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                 <Form.Label>Dirección</Form.Label>
               </Form.Group>
 
-              <Form.Group controlId="formBasicRole" className="floating-label-group mt-3">
+              <Form.Group controlId="formBasicRole" className="floating-label-group mt-4">
                 <Form.Control
                   type="text"
                   placeholder=" "

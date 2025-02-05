@@ -51,12 +51,11 @@ export default function Registro({ onSubmit, item, onVolver}) {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="biography">Biography:</label>
-                                <input
-                                    type="text"
+                                <textarea
                                     id="biography"
                                     className="form-control"
                                     {...register("biography", { required: "Campo obligatorio" })}
-                                />
+                                    />
                                 {errors.biography && <span className="error">{errors.biography.message}</span>}
                             </div>
                             <div>

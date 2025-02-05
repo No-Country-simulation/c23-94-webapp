@@ -9,7 +9,7 @@ import a4 from "../../assets/a4.png"
 import a5 from "../../assets/a5.png"
 import serviceLibrary from "../../services/serviceLibrary";
 
-const Review = ({onVolver, bookQuery}) => {
+const Review = ({ onVolver, bookQuery }) => {
     const [action, setAction] = useState("T");
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
@@ -28,30 +28,30 @@ const Review = ({onVolver, bookQuery}) => {
         a1, a2, a3, a4, a5
     ];
 
-    
+
     const getRandomAuthorTitle = () => {
         const randomIndex = Math.floor(Math.random() * authorTitles.length);
         return authorTitles[randomIndex];
     };
 
-  
+
     const getRandomAvatar = () => {
         const randomIndex = Math.floor(Math.random() * avatarImages.length);
         return avatarImages[randomIndex];
     };
 
-    
+
     const getAll = async (book) => {
         if (!book) return [];
-    
+
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('Token no encontrado. Por favor, inicie sesión.');
             return [];
         }
-    
+
         const reviewIds = book.reviewsId;
-    
+
         if (reviewIds && reviewIds.length > 0) {
             try {
                 const reviewData = await Promise.all(
@@ -63,31 +63,30 @@ const Review = ({onVolver, bookQuery}) => {
                                 Authorization: `Bearer ${token}`,
                             },
                         });
-    
+
                         if (!response.ok) {
                             throw new Error(`Error al obtener review ${reviewId}: ${response.statusText}`);
                         }
-    
+
                         return response.json();
                     })
                 );
                 return reviewData;
             } catch (error) {
                 console.error("Error fetching reviews:", error);
-                return []; // Devolvemos array vacío en caso de error
+                return [];
             }
         }
-        
+
         return [];
     };
-    
+
     const loadData = async () => {
         try {
             const libroActualizado = await serviceLibrary.getOneBook(bookQuery.id);
-            const reviewData = await getAll(libroActualizado) 
+            const reviewData = await getAll(libroActualizado)
             setReviews(reviewData);
-            console.log("boooooooooooook", libroActualizado)
-        }catch (error) {
+        } catch (error) {
             console.error("Error fetching reviews:", error);
         } finally {
             setLoading(false);
@@ -110,8 +109,8 @@ const Review = ({onVolver, bookQuery}) => {
         load();
     }, [book]);
 
-    
-    
+
+
 
     const handleNewReview = (reviewData) => {
         const token = localStorage.getItem('token');
@@ -139,7 +138,7 @@ const Review = ({onVolver, bookQuery}) => {
             });
     };
 
-    
+
 
     if (!book) {
         return <p>Error: No se encontró el libro.</p>;
@@ -151,9 +150,15 @@ const Review = ({onVolver, bookQuery}) => {
             {action === "T" && (
                 <>
                     {loading ? (
-                        <div className="loading-message">Cargando reseñas...</div>
+                        <div className="loading-message">
+                        <p>Cargando reseñas...</p>
+                        <div className="loading-gif-rating" />
+                      </div>
                     ) : (
                         <div className="container py-5">
+                            <h1 className="page-title" style={{ textAlign: "center", marginBottom: "20px" }}>
+                                Reseñas del Libro {book.name}
+                            </h1>
                             <div className="review-cards-container">
                                 {reviews.length > 0 ? (
                                     reviews.map((review, index) => (
@@ -183,7 +188,6 @@ const Review = ({onVolver, bookQuery}) => {
                                 )}
                             </div>
 
-                            {/* Botón centrado y separado */}
                             <div className="d-flex justify-content-center mt-4">
                                 <button
                                     onClick={() => setAction("R")}

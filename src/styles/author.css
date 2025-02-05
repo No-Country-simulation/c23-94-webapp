@@ -1,4 +1,3 @@
-
 .authors-container {
   display: flex;
   flex-wrap: wrap;
@@ -10,25 +9,75 @@
 }
 
 .author-card {
-  border: 2px solid #000000;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-image: url('../assets/hoja\ gastada.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  padding: 50px 35px;
   transition: all 0.3s ease;
-  width: 300px;
+  width: 330px;
+  /* Ajuste leve para más espacio */
+  height: 450px;
+  /* Más alto para acomodar mejor el contenido */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: justify;
+  /* Hace que el texto parezca más manuscrito */
+  color: black;
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  /* Tamaño de letra más acorde */
+  position: relative;
+}
+
+.author-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+/* 🔹 Estilo para los botones dentro de la tarjeta */
+.author-card button {
+  background-color: #c4a484;
+  /* Color de pergamino viejo */
+  color: #3e2723;
+  /* Marrón oscuro, como tinta antigua */
+  border: 2px solid #8d6e63;
+  /* Borde marrón oscuro */
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  margin-top: -40px;
+}
+
+.author-card button:hover {
+  background-color: #a67c52;
+  /* Oscurecemos un poco en hover */
+  color: #fff;
+  /* Mejor contraste */
+  transform: scale(1.05);
 }
 
 
 
+
 .create-author-button-container {
-  width: 100%; 
+  width: 100%;
   display: flex;
-  justify-content: center; 
-  margin-bottom: 20px; 
-  position: sticky; 
+  justify-content: center;
+  margin-bottom: 20px;
+  position: sticky;
   top: 15px;
   z-index: 1;
 }
@@ -36,6 +85,158 @@
 .create-author-btn {
   margin-top: 20px;
   padding: 10px 20px;
+  background-color: #c4a484;
+  color: #3e2723;
+  border: 2px solid #8d6e63;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.create-author-btn:hover {
+  background-color: #a67c52;
+  color: white;
+  transform: scale(1.05);
+}
+
+
+
+.loading-message {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loading-message {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-gif {
+  width: 200px;  
+  height: 200px; 
+  background-image: url('../assets/libro-pasando.gif');
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 10px; 
+}
+
+.loading-gif-rating {
+  width: 200px; 
+  height: 200px;
+  background-image: url('../assets/rating-stars.gif');
+  background-size: contain; /* O 'cover', según lo que prefieras */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.author-card:hover {
+  transform: translateY(-5px);
+}
+
+.author-card .author-info {
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.author-card h3 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.author-card p {
+  font-size: 14px;
+  text-align: justify;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.more-info-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+
+.author-card:hover .more-info-btn {
+  display: block;
+}
+
+.more-info-btn button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.session-expired {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.session-expired .message-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+}
+
+.session-expired h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.session-expired p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.session-expired button {
+  padding: 10px 20px;
+  font-size: 1rem;
   background-color: #007bff;
   color: white;
   border: none;
@@ -43,119 +244,11 @@
   cursor: pointer;
 }
 
-.create-author-btn:hover {
+.session-expired button:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
 }
 
-  
-  .loading-message {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    border-radius: 5px;
-    z-index: 1000; 
-  }
-  
-  .author-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .author-card .author-info {
-    margin-bottom: 15px;
-    flex-grow: 1;
-  }
-  
-  .author-card h3 {
-    font-size: 20px;
-    margin: 0;
-    font-weight: 600;
-  }
-  
-  .author-card p {
-    font-size: 14px; 
-    text-align: justify;
-    margin: 10px 0;
-    overflow: hidden;
-  }
-  
-  .more-info-btn {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-  }
-  
-  .author-card:hover .more-info-btn {
-    display: block;
-  }
-  
-  .more-info-btn button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-  }
-  
-  .session-expired {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-  }
-  
-  .session-expired .message-box {
-    background-color: rgba(255, 255, 255, 0.1); 
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-    max-width: 500px;
-    width: 90%; 
-  }
-  
-  .session-expired h2 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    font-weight: bold;
-  }
-  
-  .session-expired p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  .session-expired button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .session-expired button:hover {
-    background-color: #0056b3;
-  }
-  
-  .author-card h3 {
-    font-size: 26px;
-    font-weight: bold;
-  }
-  
-
-  
+.author-card h3 {
+  font-size: 26px;
+  font-weight: bold;
+}

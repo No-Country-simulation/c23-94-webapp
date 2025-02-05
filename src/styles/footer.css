@@ -1,24 +1,24 @@
 html, body {
-    height: 100%;
-    margin: 0;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .main-content {
-    flex: 1;
-  }
-  
-  footer {
-    background-color: rgba(139, 83, 55, 0.7);
-    text-align: center;
-    padding: 5px;
-  }
+  height: 100%;
+  margin: 0;
+}
 
-  footer p{
-    color: white;
-  }
-  
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start
+}
+
+.main-content {
+  flex: 1;
+}
+
+footer {
+  background-color: rgb(122, 70, 43);
+  text-align: center;
+  padding: 5px;
+}
+
+footer p{
+  color: white;
+}
