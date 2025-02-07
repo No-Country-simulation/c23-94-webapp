@@ -2,6 +2,7 @@
 
 .library-container .container {
   margin-top: -150px
+  
 }
 
 
@@ -116,6 +117,28 @@ a, a:hover {
   text-align: center;
   margin-bottom: 20px;
   font-size: 2.5rem;
-  color: #fff;       /* Letras blancas /
-  font-weight: bold; / Negrita */
+  color: #fff;      
+  font-weight: bold; 
+}
+
+.review-style{
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+textarea#comment {
+    height: 150px; 
+    width: 100%;  
+    resize: vertical;
+  }
+
+.crea-res{
+    align-items: center;  
+    justify-content: center;  
+    text-align: center;
 }

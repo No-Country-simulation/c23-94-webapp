@@ -157,7 +157,7 @@ const Review = ({ onVolver, bookQuery }) => {
                     ) : (
                         <div className="container py-5">
                             <h1 className="page-title" style={{ textAlign: "center", marginBottom: "20px" }}>
-                                Reseñas del Libro {book.name}
+                                Reseñas del libro {book.name}
                             </h1>
                             <div className="review-cards-container">
                                 {reviews.length > 0 ? (
@@ -188,10 +188,10 @@ const Review = ({ onVolver, bookQuery }) => {
                                 )}
                             </div>
 
-                            <div className="d-flex justify-content-center mt-4">
+                            <div className="d-flex justify-content-center mt-4 gap-3">
                                 <button
                                     onClick={() => setAction("R")}
-                                    className="btn btn-primary me-5"
+                                    className="btn btn-primary "
                                 >
                                     Crear reseña
                                 </button>

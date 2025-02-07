@@ -20,7 +20,7 @@ export default function Registro({ onSubmit, item, onVolver}) {
                     <div className="card-body">
                         <form className="form" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
-                                <label htmlFor="name">Name:</label>
+                                <label htmlFor="name">Nombre:</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -30,7 +30,7 @@ export default function Registro({ onSubmit, item, onVolver}) {
                                 {errors.name && <span className="error">{errors.name.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="lastName">Last Name:</label>
+                                <label htmlFor="lastName">Apellido:</label>
                                 <input
                                     type="text"
                                     id="lastName"
@@ -40,7 +40,7 @@ export default function Registro({ onSubmit, item, onVolver}) {
                                 {errors.lastName && <span className="error">{errors.lastName.message}</span>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="country">Country:</label>
+                                <label htmlFor="country">País:</label>
                                 <input
                                     type="text"
                                     id="country"
@@ -49,11 +49,12 @@ export default function Registro({ onSubmit, item, onVolver}) {
                                 />
                                 {errors.country && <span className="error">{errors.country.message}</span>}
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="biography">Biography:</label>
+                            <div className="form-group mb-4">
+                                <label htmlFor="biography">Biografía:</label>
                                 <textarea
                                     id="biography"
                                     className="form-control"
+                                    rows={10}
                                     {...register("biography", { required: "Campo obligatorio" })}
                                     />
                                 {errors.biography && <span className="error">{errors.biography.message}</span>}

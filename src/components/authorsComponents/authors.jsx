@@ -191,7 +191,7 @@ const onFiltrar = async(filter) => {
                     className="btn btn-primary create-author-btn"
                     onClick={onRegistro}
                   >
-                    Crear Autor
+                    <i class="bi bi-feather"></i> Crear Autor
                   </button>
                 </div>
               )}

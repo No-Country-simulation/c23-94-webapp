@@ -3,6 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { jwtDecode } from "jwt-decode";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo2 from "../assets/p-trans.png"
 
 const LoginModal = ({ isOpen, onClose, openModal }) => {
   const [username, setUsername] = useState('');
@@ -42,13 +43,13 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
         localStorage.setItem('token', data.data.jwt);
         localStorage.setItem('username', username);
         const decodedToken = jwtDecode(data.data.jwt);
-        console.log(decodedToken); 
+        console.log(decodedToken);
         const email = decodedToken.email;
-        localStorage.setItem("email", email); 
+        localStorage.setItem("email", email);
         const role = decodedToken.role;
         localStorage.setItem('role', role);
 
-        
+
         setUsername('');
         setPassword('');
         setErrorMessage('');
@@ -91,7 +92,10 @@ const LoginModal = ({ isOpen, onClose, openModal }) => {
           <Modal.Title>Iniciar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div className='d-flex align-items-center justify-content-center'><img src={logo2} alt="Inspire Library Logo" style={{ width: '200px', alignItems: "center" }} /></div>
+        
           <div className="d-flex align-items-center justify-content-center">
+            
             <div className="flex-grow-1">
               {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
               <Form onSubmit={handleLogin}>

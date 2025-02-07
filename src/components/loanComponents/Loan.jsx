@@ -203,7 +203,7 @@ const Loan = () => {
   }
 
   return (
-    <div className="library-container">
+    <div className="loan-container">
       <nav className="navbar"></nav>
       {error && <p style={{ color: 'red', textAlign: 'center' }}>Error: {error}</p>}
 

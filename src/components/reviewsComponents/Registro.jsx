@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Registro = ({ book, onSubmit }) => {
-    const [rating, setRating] = useState(0); 
+    const [rating, setRating] = useState(0);
     const [hoveredRating, setHoveredRating] = useState(null);
     const [comment, setComment] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,16 +16,16 @@ const Registro = ({ book, onSubmit }) => {
             comment: comment,
         };
 
-        
+
         onSubmit(newReview);
 
-        
+
         setRating(0);
         setComment("");
     };
 
     return (
-        <div className="container py-5">
+        <div className="review-style">
             <h2>Escribe una reseña para el libro: {book.name}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -37,7 +37,7 @@ const Registro = ({ book, onSubmit }) => {
                                 <span
                                     key={starIndex}
                                     className={`star ${starIndex <= (hoveredRating || rating) ? "filled" : ""}`}
-                                    onClick={() => setRating(starIndex)} 
+                                    onClick={() => setRating(starIndex)}
                                     onMouseEnter={() => setHoveredRating(starIndex)}
                                     onMouseLeave={() => setHoveredRating(null)}
                                 >
@@ -54,15 +54,16 @@ const Registro = ({ book, onSubmit }) => {
                         id="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
-                        rows="4"
+                        rows={5}
                         className="form-control"
                         placeholder="Escribe tu reseña aquí..."
                     ></textarea>
                 </div>
-
-                <button type="submit" className="btn btn-primary mt-3" disabled={isSubmitting}>
-                    {isSubmitting ? "Enviando..." : "Enviar Reseña"}
-                </button>
+                <div className="crea-res">
+                    <button type="submit" className="btn btn-primary mt-3" disabled={isSubmitting}>
+                        {isSubmitting ? "Enviando..." : "Enviar Reseña"}
+                    </button>
+                </div>
             </form>
         </div>
     );

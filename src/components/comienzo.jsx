@@ -1,4 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 import React from 'react';
 import '../styles/comienzo.css';
 import c1 from "../assets/carrousel1.png"
@@ -11,7 +14,7 @@ const Comienzo = () => {
       <header className="header">
         <h1><strong>Bienvenidos a Inspire Library</strong></h1>
       </header>
-      <div id="imageCarousel" className="carousel slide" data-bs-ride="carousel">
+      <div id="imageCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src={c1} className="d-block w-100" alt="Imagen 1" />

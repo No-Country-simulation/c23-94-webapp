@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import '../../styles/table.css';
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function Tabla(props) {
 
-    const onActualizarClick = async(item) => {
+    const onActualizarClick = async (item) => {
         props.onActualizar(item);
     };
 
     const onEliminarClick = async (id) => {
         props.onEliminar(id);
-    }    
+    }
 
     const tdata = props.rows.map((e) => {
-        const fechaActual = new Date(); 
-        const fechaVencimiento = new Date(e.dueDate); 
+        const fechaActual = new Date();
+        const fechaVencimiento = new Date(e.dueDate);
         const fechaInicio = new Date(e.loanDate);
         const mostrarBoton = props.isAdmin || fechaVencimiento >= fechaActual;
         const botonEliminar = props.isAdmin || fechaInicio >= fechaActual;
@@ -23,22 +23,22 @@ export default function Tabla(props) {
                 <td>{e.loanDate}</td>
                 <td>{e.dueDate}</td>
                 <td>
-                {mostrarBoton && (
-                    <button 
-                        className="btn btn-warning me-2" 
-                        onClick={() => onActualizarClick(e) }
-                    >
-                        Actualizar
-                    </button>
-                )}
-                {botonEliminar && (
-                    <button 
-                        className="btn btn-danger" 
-                        onClick={() => onEliminarClick(e.id)}
-                    >
-                        Eliminar
-                    </button>
-                )}
+                    {mostrarBoton && (
+                        <button
+                            className="btn btn-warning me-2"
+                            onClick={() => onActualizarClick(e)}
+                        >
+                            Actualizar
+                        </button>
+                    )}
+                    {botonEliminar && (
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => onEliminarClick(e.id)}
+                        >
+                            Eliminar
+                        </button>
+                    )}
                 </td>
             </tr>
         );
@@ -60,8 +60,15 @@ export default function Tabla(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {tdata}
+                            {props.rows.length > 0 ? (
+                                tdata
+                            ) : (
+                                <tr>
+                                    <td colSpan="3" className="text-center">No existen préstamos</td>
+                                </tr>
+                            )}
                         </tbody>
+
                     </table>
                 </div>
                 <div className='d-flex btn-container'>

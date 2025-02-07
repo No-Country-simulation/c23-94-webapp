@@ -13,7 +13,6 @@ const getObjectsLoans = async (idLibro) => {
         const idLoans = book?.loansId;
         
         if (!idLoans || idLoans.length === 0) {
-            console.log("No hay préstamos para este libro.");
             return [];
         }
 
@@ -40,7 +39,6 @@ const getObjectsLoans = async (idLibro) => {
             .filter(result => result.status === "fulfilled")
             .map(result => result.value);
 
-        console.log("Préstamos obtenidos:", loans);
         return loans;
     } catch (error) {
         console.error("Error en getObjectsLoans:", error.message);
@@ -99,7 +97,6 @@ const remove = async (id) => {
         throw new Error(responseText);
     }
 
-    console.log(responseText); 
 
     return responseText;
 };

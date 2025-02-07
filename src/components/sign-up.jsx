@@ -11,7 +11,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
     confirmPassword: '',
     phone: '',
     address: '',
-    role: '',
+    role: 'CLIENT',  // Asignamos 'client' como rol predeterminado
   });
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -50,7 +50,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
           confirmPassword: '',
           phone: '',
           address: '',
-          role: '',
+          role: 'CLIENT',
         });
         setErrorMessage('');
         onClose();
@@ -71,7 +71,7 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex align-items-center justify-content-center">
-          <div className="d-flex flex-column align-items-center justify-content-center" style={{ marginRight: '20px' }}>
+          <div className="d-flex flex-column align-items-center justify-content-center" style={{ marginRight: '20px', marginBottom: '80px' }}>
             <img
               src={imgsign}
               alt="Imagen de registro"
@@ -163,18 +163,6 @@ const SignUpModal = ({ isOpen, onClose, openLoginModal }) => {
                   required
                 />
                 <Form.Label>Dirección</Form.Label>
-              </Form.Group>
-
-              <Form.Group controlId="formBasicRole" className="floating-label-group mt-4">
-                <Form.Control
-                  type="text"
-                  placeholder=" "
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                  required
-                />
-                <Form.Label>Rol</Form.Label>
               </Form.Group>
 
               <div className="d-flex justify-content-center mt-4">

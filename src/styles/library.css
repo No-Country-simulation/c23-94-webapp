@@ -7,12 +7,21 @@
   margin-top: 50px;
 }
 
+.loan-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 50px;
+  margin-bottom: 85px;
+}
+
 .create-book-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 40px;
 }
 
 
@@ -22,12 +31,6 @@
   justify-content: center;
 }
 
-
-
-
-.delete-btn:hover {
-  background-color: #b02a37;
-}
 
 
 .image-container {

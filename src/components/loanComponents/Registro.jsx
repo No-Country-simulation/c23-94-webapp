@@ -9,7 +9,6 @@ import serviceLibrary from "../../services/serviceLibrary";
 export default function Registro({ onVolver, item, onSubmit, isSubmitting, bookQuery, isAdmin}) {
 
     const { register, handleSubmit, formState: { errors } } = useForm({ values: item })
-    console.log("ddddddddddd", item)
     const onClickVolver = (e) => {
         e.preventDefault();
         onVolver();
@@ -42,16 +41,6 @@ export default function Registro({ onVolver, item, onSubmit, isSubmitting, bookQ
                                     {...register("dueDate", { required: "Campo obligatorio" })}
                                 />
                                 {errors.dueDate && <span className="error">{errors.dueDate.message}</span>}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="userId">Usuario Número: {item.userId}</label>
-                                <input
-                                    id="userId"
-                                    type="hidden"
-                                    value={item.userId}  // El userId se pasa al backend
-                                    {...register("userId", { required: "Campo obligatorio" })}  // Registramos el userId para react-hook-form
-                                />
-                                {errors.userId && <span className="error">{errors.userId.message}</span>}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="bookId">Libro a reservar: {bookQuery.name}</label>

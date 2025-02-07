@@ -17,19 +17,15 @@
   padding: 50px 35px;
   transition: all 0.3s ease;
   width: 330px;
-  /* Ajuste leve para más espacio */
   height: 450px;
-  /* Más alto para acomodar mejor el contenido */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: justify;
-  /* Hace que el texto parezca más manuscrito */
   color: black;
   font-family: 'Georgia', serif;
   font-size: 18px;
-  /* Tamaño de letra más acorde */
   position: relative;
 }
 
@@ -44,14 +40,10 @@
   border-radius: 10px;
 }
 
-/* 🔹 Estilo para los botones dentro de la tarjeta */
 .author-card button {
   background-color: #c4a484;
-  /* Color de pergamino viejo */
   color: #3e2723;
-  /* Marrón oscuro, como tinta antigua */
   border: 2px solid #8d6e63;
-  /* Borde marrón oscuro */
   padding: 10px 15px;
   font-size: 16px;
   font-family: 'Georgia', serif;
@@ -63,9 +55,7 @@
 
 .author-card button:hover {
   background-color: #a67c52;
-  /* Oscurecemos un poco en hover */
   color: #fff;
-  /* Mejor contraste */
   transform: scale(1.05);
 }
 
@@ -153,7 +143,7 @@
   width: 200px; 
   height: 200px;
   background-image: url('../assets/rating-stars.gif');
-  background-size: contain; /* O 'cover', según lo que prefieras */
+  background-size: contain; 
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -251,4 +241,10 @@
 .author-card h3 {
   font-size: 26px;
   font-weight: bold;
+}
+
+textarea#biography {
+  height: 150px; 
+  width: 100%;  
+  resize: vertical;
 }
