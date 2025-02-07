@@ -173,7 +173,7 @@ const onFiltrar = async(filter) => {
                     <button type="button" className="btn btn-danger me-2" onClick={() => onEliminar(author.id)} >
                       Eliminar
                     </button>
-                    <button type="button" className="btn btn-primary" onClick={() => onActualizar(author)}>
+                    <button type="button" className="btn btn-warning" onClick={() => onActualizar(author)}>
                       Actualizar autor
                     </button>
                   </div>
@@ -188,7 +188,7 @@ const onFiltrar = async(filter) => {
                 <div>
                   <button
                     type="button"
-                    className="btn btn-primary create-author-btn"
+                    className="btn btn-success create-author-btn"
                     onClick={onRegistro}
                   >
                     <i class="bi bi-feather"></i> Crear Autor

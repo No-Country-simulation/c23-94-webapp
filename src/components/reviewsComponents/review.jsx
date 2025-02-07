@@ -80,7 +80,6 @@ const Review = ({ onVolver, bookQuery }) => {
 
         return [];
     };
-
     const loadData = async () => {
         try {
             const libroActualizado = await serviceLibrary.getOneBook(bookQuery.id);
@@ -139,6 +138,11 @@ const Review = ({ onVolver, bookQuery }) => {
     };
 
 
+    const volverReseñas = async () => {
+        setAction("T");
+        await loadData();
+    }
+
 
     if (!book) {
         return <p>Error: No se encontró el libro.</p>;
@@ -191,18 +195,18 @@ const Review = ({ onVolver, bookQuery }) => {
                             <div className="d-flex justify-content-center mt-4 gap-3">
                                 <button
                                     onClick={() => setAction("R")}
-                                    className="btn btn-primary "
+                                    className="old-library-btn-burgundy "
                                 >
                                     Crear reseña
                                 </button>
-                                <button className="btn btn-primary" onClick={onVolver}>Libros</button>
+                                <button className="old-library-btn-burgundy" onClick={onVolver}>Libros</button>
                             </div>
                         </div>
                     )}
                 </>
             )}
 
-            {action === "R" && <Registro book={book} onSubmit={handleNewReview} />}
+            {action === "R" && <Registro book={book} onSubmit={handleNewReview} volverReseñas={volverReseñas} />}
         </div>
     );
 };

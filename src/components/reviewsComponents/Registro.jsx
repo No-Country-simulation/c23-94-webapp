@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "../../styles/review.css";
 
-const Registro = ({ book, onSubmit }) => {
+const Registro = ({ book, onSubmit, volverReseñas }) => {
     const [rating, setRating] = useState(0);
     const [hoveredRating, setHoveredRating] = useState(null);
     const [comment, setComment] = useState("");
@@ -47,7 +48,7 @@ const Registro = ({ book, onSubmit }) => {
                         })}
                     </div>
                 </div>
-
+    
                 <div className="form-group mt-3">
                     <label htmlFor="comment">Comentario</label>
                     <textarea
@@ -60,10 +61,12 @@ const Registro = ({ book, onSubmit }) => {
                     ></textarea>
                 </div>
                 <div className="crea-res">
-                    <button type="submit" className="btn btn-primary mt-3" disabled={isSubmitting}>
-                        {isSubmitting ? "Enviando..." : "Enviar Reseña"}
-                    </button>
+                <button type="submit" className=" mt-3 old-library-btn" disabled={isSubmitting}>
+                    {isSubmitting ? "Enviando..." : "Enviar Reseña"}
+                </button>
+                <button onClick={volverReseñas} className="old-library-btn" style={{marginTop:"16px"}}>Volver</button>
                 </div>
+                
             </form>
         </div>
     );

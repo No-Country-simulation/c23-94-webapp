@@ -280,7 +280,7 @@ const Library = () => {
 
                             <button
                               type="button"
-                              className="btn btn-primary "
+                              className="btn btn-warning "
                               onClick={() => onActualizar(book)}
                             >
                               Actualizar
@@ -308,7 +308,7 @@ const Library = () => {
                   <div>
                     <button
                       type="button"
-                      className="btn btn-primary create-book-btn"
+                      className="btn btn-success create-author-btn"
                       onClick={onRegistro}
                     >
                       Crear Libro

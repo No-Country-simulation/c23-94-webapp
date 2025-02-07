@@ -4,6 +4,55 @@
   margin-top: -150px
   
 }
+.old-library-btn {
+    background-color: #8B4513; /* Marrón oscuro tipo madera */
+    color: #F5DEB3; /* Color pergamino */
+    font-family: 'Garamond', serif;
+    border: 2px solid #5D4037;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    outline: none;
+    height: 100%; /* Asegura que el botón ocupe todo el alto del contenedor */
+    display: flex;
+    align-items: center;
+}
+
+.old-library-btn:hover {
+    background-color: #5D4037;
+    color: #FFF8DC;
+}
+
+.old-library-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.old-library-btn-burgundy {
+    background-color: #6D1B1B; /* Borgoña oscuro */
+    color: #F5DEB3; /* Pergamino */
+    font-family: 'Garamond', serif;
+    border: 2px solid #4E1212; /* Rojo más oscuro */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.old-library-btn-burgundy:hover {
+    background-color: #4E1212; /* Más oscuro en hover */
+    color: #FFF8DC;
+}
+
 
 
 body {
@@ -137,8 +186,10 @@ textarea#comment {
     resize: vertical;
   }
 
-.crea-res{
-    align-items: center;  
-    justify-content: center;  
-    text-align: center;
+  .crea-res {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: stretch; /* Hace que ambos botones tengan la misma altura */
+    gap: 12px; /* Espacio entre botones */
+    margin-top: 10px;
 }
